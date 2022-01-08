@@ -2,7 +2,7 @@
   <div class="navbar navbar-dark bg-dark p-2">
 
       <a class="navbar-brand">SPORTS STORE</a>
-
+      <card-summary></card-summary>
   </div>
 <!--  <div class="row">-->
     <div class="col-3 p-1 float-start d-grid gap-2 mt-2">
@@ -23,7 +23,13 @@
             {{ product.price | currency:"USD":true:"2.2-2" }}
           </span>
         </h4>
-        <div class="card-text p-1">{{product.description}}</div>
+        <div class="card-text p-1">
+          {{product.description}}
+          <button class="btn btn-success btn-sm -pull-right"
+          (click)="addProductToCart(product)">
+            Add To Cart
+          </button>
+        </div>
       </div>
       <div class="form-check-inline -pull-left ms-2">
         <select class="form-control" [value]="productsPerPage"
@@ -39,6 +45,17 @@
                 class="btn btn-primary" [class.active]="page == selectedPage">
           {{page}}
         </button>
+      </div>
+      <div *ngFor="let line of cart.lines" class="card m-2">
+        <h4 class="card-header">
+          {{line.product.name}}
+          <span class="float-sm-end badge rounded-pill bg-primary">
+            {{ line.product.price | currency:"USD":true:"2.2-2" }}
+          </span>
+        </h4>
+        <div class="card-text p-1">
+          {{line.product.description}}
+        </div>
       </div>
     </div>
  <!-- </div>-->

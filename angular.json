@@ -27,6 +27,11 @@
               "src/assets"
             ],
             "styles": [
+              "node_modules/@fortawesome/fontawesome-free/css/fontawesome.css",
+              "node_modules/@fortawesome/fontawesome-free/css/solid.css",
+              "node_modules/@fortawesome/fontawesome-free/css/regular.css",
+              "node_modules/@fortawesome/fontawesome-free/css/brands.css",
+              "node_modules/bootstrap/dist/css/bootstrap.css",
               "src/styles.css"
             ],
             "scripts": []
@@ -94,6 +99,7 @@
               "src/assets"
             ],
             "styles": [
+              "node_modules/@fortawesome/fontawesome-free/css/fontawesome.css",
               "node_modules/bootstrap/dist/css/bootstrap.css",
               "src/styles.css"
             ],
