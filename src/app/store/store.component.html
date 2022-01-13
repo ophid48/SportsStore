@@ -25,13 +25,13 @@
         </h4>
         <div class="card-text p-1">
           {{product.description}}
-          <button class="btn btn-success btn-sm -pull-right"
+          <button class="btn btn-success btn-sm float-end me-2"
           (click)="addProductToCart(product)">
             Add To Cart
           </button>
         </div>
       </div>
-      <div class="form-check-inline -pull-left ms-2">
+      <div class="form-check-inline float-start ms-2">
         <select class="form-control" [value]="productsPerPage"
         (change)="changePageSize($any($event.target).value)">
           <option value="3">3 per Page</option>
@@ -46,7 +46,7 @@
           {{page}}
         </button>
       </div>
-      <div *ngFor="let line of cart.lines" class="card m-2">
+<!--      <div *ngFor="let line of cart.lines" class="card m-2">
         <h4 class="card-header">
           {{line.product.name}}
           <span class="float-sm-end badge rounded-pill bg-primary">
@@ -56,7 +56,7 @@
         <div class="card-text p-1">
           {{line.product.description}}
         </div>
-      </div>
+      </div>-->
     </div>
  <!-- </div>-->
 <!--</div>-->

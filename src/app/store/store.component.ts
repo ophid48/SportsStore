@@ -2,6 +2,7 @@ import { Component } from "@angular/core";
 import { Product } from "../model/product.model";
 import { ProductRepository } from "../model/product.repository";
 import { Cart } from "../model/cart.model";
+import {Router} from "@angular/router";
 
 @Component({
   selector: "store",
@@ -14,7 +15,8 @@ export class StoreComponent {
   public selectedPage = 1;
 
   constructor(private repository: ProductRepository,
-              public cart: Cart) { }
+              private cart: Cart,
+              private router: Router) { }
 
   get products(): Product[] {
     // @ts-ignore
@@ -51,6 +53,7 @@ export class StoreComponent {
 
   addProductToCart(product: Product){
     this.cart.addLine(product);
+/*    this.router.navigateByUrl("/cart")/!*.then(r => alert(r))*!/;*/
   }
 /*  get pageNumbers(): number[] {
 

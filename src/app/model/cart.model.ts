@@ -22,7 +22,7 @@ export class Cart {
       line.quantity = Number(quantity);
     this.recalculate();
   }
-
+  //@ts-ignore
   removeLine(id: number) {
     let index = this.lines.findIndex(line => line.product.id == id);
     this.lines.splice(index);
