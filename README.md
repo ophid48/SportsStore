@@ -1,5 +1,9 @@
 # SportsStore
 
+## Суть проекта 
+
+Данный проект включает в себя создание интернет-магазина с товарами спортивной тематики.
+
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 12.2.5.
 
 ## Development server
