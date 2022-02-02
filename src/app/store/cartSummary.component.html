@@ -1,9 +1,9 @@
-<div class="bg-dark text-white">
+<div class="bg-dark text-white float-end">
   <small>
     Your cart:
     <span *ngIf="cart.itemCount > 0">
       {{ cart.itemCount }} item(s)
-      {{ cart.cartPrice | currency:"USD":true:"2.2-2"}}
+      {{ cart.cartPrice | currency:"USD":"symbol":"2.2-2"}}
     </span>
     <span *ngIf="cart.itemCount == 0">
       (empty)
