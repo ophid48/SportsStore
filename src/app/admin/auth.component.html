@@ -5,7 +5,8 @@
      *ngIf="errorMessage != null">
   {{errorMessage}}
 </div>
-<div class="p-2">
+<div class="p-2" style="width: 30%; margin-left: auto;
+    margin-right: auto;">
   <form novalidate #form="ngForm" (ngSubmit)="authenticate(form)">
     <div>
       <label class="form-label">Username</label>

@@ -1,12 +1,9 @@
 import {Injectable} from "@angular/core";
-import {HttpClient, HttpRequest} from "@angular/common/http";
+import {HttpClient, HttpHeaders} from "@angular/common/http";
 import { Observable } from "rxjs/Observable";
 import { Product } from "./product.model";
-/*import { Cart } from "./cart.model";*/
 import { Order } from "./order.model";
 import "rxjs/add/operator/map";
-import {from as observableFrom, observable} from "rxjs";
-import * as url from "url";
 import {map} from "rxjs/operators";
 
 const PROTOCOL = "http";
@@ -36,5 +33,38 @@ export class RestDataSource {
 
   saveOrder(order: Order): Observable<Order>{
     return this.http.post<Order>(this.baseUrl + "orders", order)
+  }
+
+  saveProduct(product: Product): Observable<Product> {
+    return this.http.post<Product>(this.baseUrl + "products", product, this.getOptions());
+  }
+
+  updateProduct(product: Product): Observable<Product> {
+    return this.http.put<Product>(`${this.baseUrl}products/${product.id}`, product, this.getOptions());
+  }
+
+  deleteProduct(id: number): Observable<Product> {
+    return this.http.delete<Product>(`${this.baseUrl}products/${id}`, this.getOptions())
+  }
+
+  getOrders(): Observable<Order[]> {
+    return this.http.get<Order[]>(this.baseUrl + "orders", this.getOptions());
+
+  }
+
+  deleteOrder(id: number): Observable<Order> {
+    return this.http.delete<Order>(`${this.baseUrl}orders/${id}`, this.getOptions());
+  }
+
+  updateOrder(order: Order): Observable<Order> {
+    return this.http.put<Order>(`${this.baseUrl}orders/${order.id}`, order, this.getOptions());
+  }
+
+  private getOptions() {
+    return {
+      headers: new HttpHeaders({
+        "Authorization": `Bearer<${this.auth_token}>`
+      })
+    }
   }
 }
