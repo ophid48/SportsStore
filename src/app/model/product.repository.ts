@@ -29,7 +29,6 @@ export class ProductRepository {
   }
 
   getCategories(): (string )[] {
-    // @ts-ignore
     return this.categories;
   }
 

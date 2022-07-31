@@ -4,14 +4,14 @@ import {Cart} from "./cart.model";
 
 @Injectable()
 export class Order {
-  public id: number | null | undefined;
-  public name: string | null | undefined;
-  public address: string | null | undefined;
-  public city: string | null | undefined;
-  public state: string | null | undefined;
-  public zip: string | null | undefined;
-  public country: string | null | undefined;
-  public shipped: boolean | null | undefined = false;
+  public id!: number | null;
+  public name!: string | null;
+  public address!: string| null;
+  public city!: string| null;
+  public state!: string| null;
+  public zip!: string| null;
+  public country!: string| null;
+  public shipped: boolean = false;
 
   constructor(public cart: Cart) {
   }

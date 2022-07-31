@@ -7,12 +7,9 @@ import {AuthService} from "../model/auth.service";
   templateUrl: "auth.component.html"
 })
 export class AuthComponent {
-  // @ts-ignore
-  public username: string;
-  // @ts-ignore
-  public password: string;
-  // @ts-ignore
-  public errorMessage: string;
+  public username: string = '';
+  public password: string = '';
+  public errorMessage: string = '';
 
   constructor(private router: Router,
               private auth: AuthService) {}

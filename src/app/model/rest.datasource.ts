@@ -49,7 +49,6 @@ export class RestDataSource {
 
   getOrders(): Observable<Order[]> {
     return this.http.get<Order[]>(this.baseUrl + "orders", this.getOptions());
-
   }
 
   deleteOrder(id: number): Observable<Order> {
