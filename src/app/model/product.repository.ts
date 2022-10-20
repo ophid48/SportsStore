@@ -1,8 +1,6 @@
 import { Injectable } from "@angular/core";
 import { Product } from "./product.model";
-// import { StaticDataSource } from "./static.datasourse";
 import {RestDataSource} from "./rest.datasource";
-import {processRules} from "@angular/compiler/src/shadow_css";
 
 @Injectable()
 export class ProductRepository {

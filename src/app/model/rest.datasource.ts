@@ -1,9 +1,8 @@
 import {Injectable} from "@angular/core";
 import {HttpClient, HttpHeaders} from "@angular/common/http";
-import { Observable } from "rxjs/Observable";
+import { Observable } from "rxjs";
 import { Product } from "./product.model";
 import { Order } from "./order.model";
-import "rxjs/add/operator/map";
 import {map} from "rxjs/operators";
 
 const PROTOCOL = "http";
@@ -12,10 +11,12 @@ const PORT = 3500;
 @Injectable()
 export class RestDataSource {
   baseUrl: string;
+  baseUrlv2: string;
   auth_token: any;
 
   constructor(private http: HttpClient) {
-    this.baseUrl = `${PROTOCOL}://${location.hostname}:${PORT}/`;
+    this.baseUrlv2 = `/api/v1/`;
+    this.baseUrl = `/api/v2/`;
   }
 
   authenticate(user: string, pass: string): Observable<boolean> {
@@ -28,7 +29,7 @@ export class RestDataSource {
   }
 
   getProducts(): Observable<Product[]> {
-    return this.http.get<Product[]>(this.baseUrl + "products");
+    return this.http.get<Product[]>(this.baseUrlv2 + "products");
   }
 
   saveOrder(order: Order): Observable<Order>{
