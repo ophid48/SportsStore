@@ -1,0 +1,14 @@
+{
+  "/api/v1": {
+    "target": "http://localhost:8000/",
+    "secure": false,
+    "logLevel": "debug",
+    "changeOrigin": true
+  },
+  "/api/v2": {
+    "target": "http://localhost:3500/",
+    "secure": false,
+    "logLevel": "debug",
+    "changeOrigin": true
+  }
+}
