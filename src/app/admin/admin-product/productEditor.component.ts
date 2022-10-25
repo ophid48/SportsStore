@@ -1,6 +1,6 @@
 import { Component } from "@angular/core";
-import {Product} from "../model/product.model";
-import {ProductRepository} from "../model/product.repository";
+import {Product} from "../../model/product/product.model";
+import {ProductRepository} from "../../model/product/product.repository";
 import {ActivatedRoute, Router} from "@angular/router";
 import {NgForm} from "@angular/forms";
 

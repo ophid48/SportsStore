@@ -16,34 +16,41 @@
   <button class="btn d-block btn-primary" (click)="changeCategory()">
     Home
   </button>
-  <button *ngFor="let cat of categories" class="btn btn-primary"
-          [class.active]="cat == selectedCategory" (click)="changeCategory(cat)">
-    {{cat}}
+  <button
+    *ngFor="let cat of categories"
+    class="btn btn-primary"
+    [class.active]="cat == selectedCategory"
+    (click)="changeCategory(cat)"
+  >
+    {{ cat }}
   </button>
-  <button class="btn btn-primary mt-5" routerLink="/admin">
-    Admin
-  </button>
+  <button class="btn btn-primary mt-5" routerLink="/admin/main">Admin</button>
 </div>
 
 <div class="col-9 p-1 float-end">
   <div *ngFor="let product of products" class="card m-2">
     <h4 class="card-header">
-      {{product.name}}
+      {{ product.name }}
       <span class="float-sm-end badge rounded-pill bg-primary">
-        {{ product.price | currency:"USD":"symbol":"2.2-2" }}
+        {{ product.price | currency: "USD":"symbol":"2.2-2" }}
       </span>
     </h4>
     <div class="card-text p-1">
-      {{product.description}}
-      <button class="btn btn-success btn-sm float-end me-2"
-      (click)="addProductToCart(product)">
+      {{ product.description }}
+      <button
+        class="btn btn-success btn-sm float-end me-2"
+        (click)="addProductToCart(product)"
+      >
         Add To Cart
       </button>
     </div>
   </div>
   <div class="form-check-inline float-start ms-2">
-    <select class="form-control" [value]="productsPerPage"
-    (change)="changePageSize($any($event.target).value)">
+    <select
+      class="form-control"
+      [value]="productsPerPage"
+      (change)="changePageSize($any($event.target).value)"
+    >
       <option value="3">3 per Page</option>
       <option value="4">4 per Page</option>
       <option value="6">6 per Page</option>
@@ -52,9 +59,13 @@
     </select>
   </div>
   <div class="btn-group float-end me-2">
-    <button *counter="let page of pageCount" (click)="changePage(page)"
-            class="btn btn-primary" [class.active]="page == selectedPage">
-      {{page}}
+    <button
+      *counter="let page of pageCount"
+      (click)="changePage(page)"
+      class="btn btn-primary"
+      [class.active]="page == selectedPage"
+    >
+      {{ page }}
     </button>
   </div>
 </div>

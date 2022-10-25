@@ -1,21 +1,33 @@
-import { Injectable } from "@angular/core";
-import { Observable } from "rxjs";
-import { RestDataSource } from "./rest.datasource";
+import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
+import { RestDataSource } from './rest.datasource';
+import { UserService } from './user/user.service';
+import { map } from 'rxjs/operators';
+import { MyCookieService } from './cookie/my-cookie.service';
 
 @Injectable()
 export class AuthService {
-
-  constructor(private datasource: RestDataSource) {}
+  constructor(
+    private datasource: RestDataSource,
+    private userService: UserService,
+    private cookieService: MyCookieService
+  ) {}
 
   authenticate(username: string, password: string): Observable<boolean> {
-    return this.datasource.authenticate(username, password);
+    return this.datasource.login(username, password).pipe(
+      map((res) => {
+        console.log(res);
+        return res;
+      })
+    );
+    // return this.datasource.authenticate(username, password);
   }
 
   get authenticated(): boolean {
-    return this.datasource.auth_token != null;
+    return this.cookieService.getCookieByName('token') !== undefined;
   }
 
   clear() {
-    this.datasource.auth_token = null;
+    this.datasource.access_token = null;
   }
 }

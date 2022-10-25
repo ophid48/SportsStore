@@ -8,6 +8,9 @@
       "schematics": {
         "@schematics/angular:application": {
           "strict": true
+        },
+        "@schematics/angular:component": {
+          "style": "scss"
         }
       },
       "root": "",
@@ -27,14 +30,18 @@
               "src/assets"
             ],
             "styles": [
+              "node_modules/minireset.css/minireset.css",
               "node_modules/@fortawesome/fontawesome-free/css/fontawesome.css",
               "node_modules/@fortawesome/fontawesome-free/css/solid.css",
               "node_modules/@fortawesome/fontawesome-free/css/regular.css",
               "node_modules/@fortawesome/fontawesome-free/css/brands.css",
               "node_modules/bootstrap/dist/css/bootstrap.css",
-              "src/styles.css"
+              "src/styles.scss",
+              "node_modules/igniteui-angular/styles/igniteui-angular.css"
             ],
-            "scripts": []
+            "scripts": [
+              "./node_modules/hammerjs/hammer.min.js"
+            ]
           },
           "configurations": {
             "production": {
@@ -101,15 +108,23 @@
             "styles": [
               "node_modules/@fortawesome/fontawesome-free/css/fontawesome.css",
               "node_modules/bootstrap/dist/css/bootstrap.css",
-              "src/styles.css"
+              "src/styles.scss",
+              "node_modules/igniteui-angular/styles/igniteui-angular.css"
             ],
-            "scripts": []
+            "scripts": [
+              "./node_modules/hammerjs/hammer.min.js"
+            ]
           }
         }
       }
     }
   },
   "defaultProject": "SportsStore",
+  "schematics": {
+    "@schematics/angular:component": {
+      "style": "scss"
+    }
+  },
   "cli": {
     "analytics": false
   }

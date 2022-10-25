@@ -1,7 +1,7 @@
 import { Component } from "@angular/core";
 import { NgForm } from "@angular/forms";
 import { Router } from "@angular/router";
-import {AuthService} from "../model/auth.service";
+import {AuthService} from "../../model/auth.service";
 
 @Component({
   templateUrl: "auth.component.html"
@@ -18,6 +18,7 @@ export class AuthComponent {
     if (form.valid) {
       this.auth.authenticate(this.username, this.password)
         .subscribe(response => {
+          console.log(response);
           if (response) {
             this.router.navigateByUrl("/admin/main");
           }

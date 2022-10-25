@@ -1,12 +1,12 @@
 import {Component} from "@angular/core";
 import {NgForm} from "@angular/forms";
-import {OrderRepository} from "../model/order.repository";
-import {Order} from "../model/order.model";
+import {OrderRepository} from "../model/order/order.repository";
+import {Order} from "../model/order/order.model";
 
 @Component({
   moduleId: module.id,
   templateUrl: "checkout.component.html",
-  styleUrls: ["checkout.component.css"]
+  styleUrls: ["checkout.component.scss"]
 })
 export class CheckoutComponent {
   orderSent: boolean = false;

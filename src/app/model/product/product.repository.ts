@@ -1,6 +1,6 @@
 import { Injectable } from "@angular/core";
 import { Product } from "./product.model";
-import {RestDataSource} from "./rest.datasource";
+import {RestDataSource} from "../rest.datasource";
 
 @Injectable()
 export class ProductRepository {
@@ -10,6 +10,7 @@ export class ProductRepository {
   constructor(private dataSource: RestDataSource) {
     dataSource.getProducts().subscribe(data => {
       this.products = data;
+      console.log(data);
       // @ts-ignore
       this.categories = data.map(p => p.category)
         .filter((c, index, array) => array.indexOf(c) == index).sort();
@@ -17,7 +18,7 @@ export class ProductRepository {
   }
 //  : string = null было
   // @ts-ignore
-  getProducts(category: string = null): Product[] {
+  getProducts(category: number = null): Product[] {
     return this.products
       .filter(p => category == null || category == p.category);
   }
