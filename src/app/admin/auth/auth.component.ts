@@ -1,31 +1,31 @@
-import { Component } from "@angular/core";
-import { NgForm } from "@angular/forms";
-import { Router } from "@angular/router";
-import {AuthService} from "../../model/auth.service";
+import { Component } from '@angular/core';
+import { NgForm } from '@angular/forms';
+import { Router } from '@angular/router';
+import { AuthService } from '../../model/auth.service';
+import { error } from '@angular/compiler-cli/src/transformers/util';
 
 @Component({
-  templateUrl: "auth.component.html"
+  templateUrl: 'auth.component.html',
 })
 export class AuthComponent {
   public username: string = '';
   public password: string = '';
   public errorMessage: string = '';
 
-  constructor(private router: Router,
-              private auth: AuthService) {}
+  constructor(private router: Router, private auth: AuthService) {}
 
   authenticate(form: NgForm) {
     if (form.valid) {
-      this.auth.authenticate(this.username, this.password)
-        .subscribe(response => {
-          console.log(response);
-          if (response) {
-            this.router.navigateByUrl("/admin/main");
+      this.auth.authenticate(this.username, this.password).subscribe({
+        next: (res) => {
+          if (res) {
+            this.router.navigateByUrl('/admin/main');
           }
-          this.errorMessage = "Authentification Failed"
-        })
+        },
+        error: (err) => (this.errorMessage = 'Authentification Failed'),
+      });
     } else {
-      this.errorMessage = "Form Data Invalid";
+      this.errorMessage = 'Form Data Invalid';
     }
   }
 }

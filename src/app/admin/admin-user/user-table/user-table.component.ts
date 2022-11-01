@@ -13,6 +13,11 @@ export class UserTableComponent implements OnInit {
     null
   );
 
+  selectedUser: IUser;
+
+  isEdit = false;
+  isOpen = false;
+
   constructor(private userService: UserService) {}
 
   ngOnInit(): void {
@@ -21,10 +26,22 @@ export class UserTableComponent implements OnInit {
       .subscribe((response) => this.users$.next(response));
   }
 
-  deleteUser(id: string) {
+  deleteUser(id: number) {
     this.userService.deleteById(id).subscribe(() => {
       const oldData = this.users$.value ?? [];
       this.users$.next([...oldData.filter((f) => f.id !== id)]);
     });
+  }
+
+  closeEditor() {
+    console.log('Exit');
+    this.isOpen = false;
+    this.isEdit = false;
+  }
+
+  editUser(user: IUser) {
+    this.selectedUser = user;
+    this.isEdit = true;
+    this.isOpen = true;
   }
 }

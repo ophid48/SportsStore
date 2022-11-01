@@ -24,7 +24,8 @@ export class AuthService {
   }
 
   get authenticated(): boolean {
-    return this.cookieService.getCookieByName('token') !== undefined;
+    // return !!this.cookieService.getCookieByName('token');
+    return !!this.datasource.access_token;
   }
 
   clear() {

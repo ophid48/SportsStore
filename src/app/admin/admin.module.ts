@@ -11,6 +11,7 @@ import { OrderTableComponent } from './admin-order/orderTable.component';
 import { UserTableComponent } from './admin-user/user-table/user-table.component';
 import { UserCreateComponent } from './admin-user/user-create/user-create.component';
 import { IgxGridModule } from 'igniteui-angular';
+import { OrderEditorComponent } from './admin-order/orderEditor.component';
 
 let routing = RouterModule.forChild([
   { path: 'auth', component: AuthComponent },
@@ -23,8 +24,8 @@ let routing = RouterModule.forChild([
       { path: 'products/:mode', component: ProductEditorComponent },
       { path: 'products', component: ProductTableComponent },
       { path: 'orders', component: OrderTableComponent },
-      { path: 'users/:mode/:id', component: UserTableComponent },
-      { path: 'users/:mode', component: UserTableComponent },
+      { path: 'users/:mode/:id', component: UserCreateComponent },
+      { path: 'users/:mode', component: UserCreateComponent },
       { path: 'users', component: UserTableComponent },
       { path: '**', redirectTo: 'products' },
     ],
@@ -43,6 +44,7 @@ let routing = RouterModule.forChild([
     OrderTableComponent,
     UserTableComponent,
     UserCreateComponent,
+    OrderEditorComponent,
   ],
 })
 export class AdminModule {}

@@ -41,7 +41,7 @@ export class RestDataSource {
   login(login: string, pass: string): Observable<boolean> {
     return this.http
       .post<IToken>(
-        this.baseUrlv2 + 'login',
+        this.baseUrlv2 + 'users/login/',
         {
           login: login,
           password: pass,
@@ -97,7 +97,7 @@ export class RestDataSource {
   }
 
   getOrders(): Observable<Order[]> {
-    return this.http.get<Order[]>(this.baseUrl + 'orders', this.getOptions());
+    return this.http.get<Order[]>(this.baseUrlv2 + 'orders', this.getOptions());
   }
 
   deleteOrder(id: number): Observable<Order> {

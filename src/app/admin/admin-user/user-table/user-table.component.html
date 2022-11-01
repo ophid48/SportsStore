@@ -7,34 +7,42 @@
   <!--  <button class="btn btn-primary" routerLink="/admin/main/users/create">-->
   <!--    Create New User-->
   <!--  </button>-->
-  <table class="table table-sm table-striped">
-    <thead>
-      <tr>
-        <th>ID</th>
-        <th>Name</th>
-        <th>Category</th>
-        <th>Price</th>
-        <th></th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr *ngFor="let user of users; let i = index">
-        <td>{{ user.first_name }}</td>
-        <td>{{ user.last_name }}</td>
-        <td>{{ user.login }}</td>
-        <td>
-          <button
-            class="btn btn-sm btn-warning m-1"
-            [routerLink]="['/admin/main/users/edit', user.id]"
-          >
-            Edit
-          </button>
-          <button class="btn btn-sm btn-danger" (click)="deleteUser(user.id)">
-            Delete
-          </button>
-        </td>
-      </tr>
-    </tbody>
-  </table>
+  <ng-container *ngIf="!isOpen; else edit">
+    <table class="table table-sm table-striped">
+      <thead>
+        <tr>
+          <th>Имя</th>
+          <th>Фамилия</th>
+          <th>Логин</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let user of users; let i = index">
+          <td>{{ user.first_name }}</td>
+          <td>{{ user.last_name }}</td>
+          <td>{{ user.login }}</td>
+          <td>
+            <button class="btn btn-sm btn-warning m-1" (click)="editUser(user)">
+              Edit
+            </button>
+            <button class="btn btn-sm btn-danger" (click)="deleteUser(user.id)">
+              Delete
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <button class="btn btn-primary" routerLink="/admin/main/users/create">
+      Create New User
+    </button>
+  </ng-container>
+  <ng-template #edit>
+    <app-user-create
+      [user]="selectedUser"
+      [isEdit]="isEdit"
+      (closeEditor)="closeEditor()"
+    ></app-user-create>
+  </ng-template>
 </ng-container>
 <ng-template #loading> loading... </ng-template>
