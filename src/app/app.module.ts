@@ -21,7 +21,7 @@ import { SportStoreComponent } from './store/sport-store/sport-store.component';
     StoreModule,
     RouterModule.forRoot([
       {
-        path: 'store',
+        path: 'catalog',
         component: SportStoreComponent,
         canActivate: [StoreFirstGuard],
       },
@@ -43,7 +43,7 @@ import { SportStoreComponent } from './store/sport-store/sport-store.component';
       },
       {
         path: '**',
-        redirectTo: '/store',
+        redirectTo: '/catalog',
       },
     ]),
     BrowserAnimationsModule,

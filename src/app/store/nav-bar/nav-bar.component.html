@@ -8,29 +8,29 @@
       <div class="buttons">
         <div
           class="button"
-          [class.selected]="isSelect('Каталог')"
-          (click)="selected = 'Каталог'"
+          [class.selected]="isSelect('catalog')"
+          (click)="navClick('catalog')"
         >
           Каталог
         </div>
         <div
           class="button"
-          [class.selected]="isSelect('О компании')"
-          (click)="selected = 'О компании'"
+          [class.selected]="isSelect('about')"
+          (click)="navClick('about')"
         >
           О компании
         </div>
         <div
           class="button"
-          [class.selected]="isSelect('Администрирование')"
-          (click)="selected = 'Администрирование'"
+          [class.selected]="isSelect('admin')"
+          (click)="navClick('admin')"
         >
           Администрирование
         </div>
         <div
           class="button"
-          [class.selected]="isSelect('Управление аккаунтом')"
-          (click)="selected = 'Управление аккаунтом'"
+          [class.selected]="isSelect('account')"
+          (click)="navClick('account')"
         >
           Управление аккаунтом
         </div>

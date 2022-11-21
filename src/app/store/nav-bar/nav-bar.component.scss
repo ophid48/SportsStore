@@ -35,15 +35,16 @@
 
   .nav-elements {
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
     align-items: center;
+    width: 100%;
 
     .main-nav-elements {
       display: flex;
       justify-content: center;
       align-items: center;
 
-      height: 100%;
+      height: 73px;
 
       .buttons {
         display: flex;
@@ -59,7 +60,7 @@
         }
 
         .button {
-          padding-top: 8px;
+          padding-top: 12px;
           font-size: 17px;
           height: 100%;
         }
