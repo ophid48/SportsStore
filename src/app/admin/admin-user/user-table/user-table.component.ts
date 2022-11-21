@@ -29,7 +29,7 @@ export class UserTableComponent implements OnInit {
   deleteUser(id: number) {
     this.userService.deleteById(id).subscribe(() => {
       const oldData = this.users$.value ?? [];
-      this.users$.next([...oldData.filter((f) => f.id !== id)]);
+      this.users$.next([...oldData.filter((f) => f.user_id !== id)]);
     });
   }
 

@@ -5,13 +5,13 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { StoreModule } from './store/store.module';
 import { RouterModule } from '@angular/router';
-import { StoreComponent } from './store/store.component';
 import { CartDetailComponent } from './store/cartDetail.component';
 import { CheckoutComponent } from './store/checkout.component';
 import { StoreFirstGuard } from './storeFirst.guard';
 import { AdminModule } from './admin/admin.module';
 import { CookieService } from 'ngx-cookie-service';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { SportStoreComponent } from './store/sport-store/sport-store.component';
 
 @NgModule({
   declarations: [AppComponent],
@@ -22,7 +22,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     RouterModule.forRoot([
       {
         path: 'store',
-        component: StoreComponent,
+        component: SportStoreComponent,
         canActivate: [StoreFirstGuard],
       },
       {

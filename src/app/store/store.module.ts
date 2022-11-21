@@ -8,6 +8,8 @@ import {CartSummaryComponent} from "./cartSummary.component";
 import {CartDetailComponent} from "./cartDetail.component";
 import {CheckoutComponent} from "./checkout.component";
 import {RouterModule} from "@angular/router";
+import { NavBarComponent } from './nav-bar/nav-bar.component';
+import { SportStoreComponent } from './sport-store/sport-store.component';
 
 @NgModule({
   imports: [ModelModule, BrowserModule, FormsModule, RouterModule],
@@ -15,7 +17,9 @@ import {RouterModule} from "@angular/router";
                  CounterDirective,
                  CartSummaryComponent,
                  CartDetailComponent,
-                 CheckoutComponent],
+                 CheckoutComponent,
+                 NavBarComponent,
+                 SportStoreComponent],
   exports: [StoreComponent, CartDetailComponent, CheckoutComponent]
 })
 export class StoreModule { }

@@ -1,5 +1,5 @@
 export interface IUser {
-  id: number;
+  user_id: number;
   first_name: string;
   login: string;
   password: string;
@@ -23,7 +23,7 @@ export class User {
     public first_name?: string,
     public login?: string,
     public password?: string,
-    public id?: string,
+    public user_id?: string,
     public last_name?: string
   ) {}
 }

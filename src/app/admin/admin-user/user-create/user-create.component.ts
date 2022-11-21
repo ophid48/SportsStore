@@ -24,7 +24,7 @@ export class UserCreateComponent implements OnInit {
   ) {
     if (!this.isEdit) {
       this.user = {
-        id: 0,
+        user_id: 0,
         last_name: '',
         first_name: '',
         login: '',
@@ -37,7 +37,7 @@ export class UserCreateComponent implements OnInit {
 
   save(form: NgForm) {
     if (this.isEdit && this.user) {
-      this.userService.patchById(this.user, this.user.id).subscribe({
+      this.userService.patchById(this.user, this.user.user_id).subscribe({
         next: (res) => {
           console.log(res);
           this.closeEditor.emit();

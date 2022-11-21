@@ -1,0 +1,40 @@
+<div class="content">
+  <div class="logo-sector">
+    <div class="logo"></div>
+    <div class="site-name">Sports Store</div>
+  </div>
+  <div class="nav-elements">
+    <div class="main-nav-elements">
+      <div class="buttons">
+        <div
+          class="button"
+          [class.selected]="isSelect('Каталог')"
+          (click)="selected = 'Каталог'"
+        >
+          Каталог
+        </div>
+        <div
+          class="button"
+          [class.selected]="isSelect('О компании')"
+          (click)="selected = 'О компании'"
+        >
+          О компании
+        </div>
+        <div
+          class="button"
+          [class.selected]="isSelect('Администрирование')"
+          (click)="selected = 'Администрирование'"
+        >
+          Администрирование
+        </div>
+        <div
+          class="button"
+          [class.selected]="isSelect('Управление аккаунтом')"
+          (click)="selected = 'Управление аккаунтом'"
+        >
+          Управление аккаунтом
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,87 @@
+.content {
+  width: 100%;
+  background: #edf2f4;
+  padding: 0 0 0 16px;
+  margin: 0;
+  display: flex;
+  flex-direction: row;
+  height: 73px;
+  align-items: center;
+  gap: 69px;
+
+
+  .logo-sector {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    height: 69px;
+    width: 279px;
+
+    .logo {
+      width: 89px;
+      height: 69px;
+      background: #6bc502;
+    }
+
+    .site-name {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 27pt;
+      width: 190px;
+    }
+  }
+
+  .nav-elements {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    .main-nav-elements {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      height: 100%;
+
+      .buttons {
+        display: flex;
+        margin: 10px;
+        padding: 10px;
+        height: 100%;
+        width: fit-content;
+        gap: 20px;
+
+        .button.selected:after {
+          border-bottom: solid 3px #ef233c !important;
+          transform: scaleX(1);
+        }
+
+        .button {
+          padding-top: 8px;
+          font-size: 17px;
+          height: 100%;
+        }
+
+        .button:after {
+          display:block;
+          content: '';
+          border-bottom: solid 3px #ef233c;
+          transform: scaleX(0);
+          transition: transform 250ms ease-in-out;
+        }
+
+        .button:hover:after {
+          transform: scaleX(1);
+        }
+
+        .button:hover {
+          cursor: pointer;
+        }
+      }
+    }
+  }
+}
+
+
