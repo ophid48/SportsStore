@@ -1,30 +1,29 @@
-import { Injectable } from "@angular/core";
-import { Product } from "../product/product.model";
+import { Injectable } from '@angular/core';
+import { IProduct, Product } from '../product/product.model';
 
-@Injectable()
+@Injectable({ providedIn: 'root' })
 export class Cart {
   public lines: CartLine[] = [];
   public itemCount: number = 0;
   public cartPrice: number = 0;
 
-  addLine(product: Product, quantity: number = 1){
-    let line = this.lines.find(line => line.product.id == product.id);
-    if (line != undefined)
-      line.quantity += quantity;
-    else
-      this.lines.push(new CartLine(product, quantity));
+  addLine(product: IProduct, quantity: number = 1) {
+    let line = this.lines.find((line) => line.product.id == product.id);
+    if (line && line.quantity === 1 && quantity < 0)
+      this.removeLine(line.product.id);
+    else if (line != undefined) line.quantity += quantity;
+    else this.lines.push(new CartLine(product, quantity));
     this.recalculate();
   }
 
   updateQuantity(product: Product, quantity: number) {
-    let line = this.lines.find(line => line.product.id == product.id);
-    if (line != undefined)
-      line.quantity = Number(quantity);
+    let line = this.lines.find((line) => line.product.id == product.id);
+    if (line != undefined) line.quantity = Number(quantity);
     this.recalculate();
   }
-  //@ts-ignore
+
   removeLine(id: number) {
-    let index = this.lines.findIndex(line => line.product.id == id);
+    let index = this.lines.findIndex((line) => line.product.id == id);
     this.lines.splice(index);
     this.recalculate();
   }
@@ -38,18 +37,15 @@ export class Cart {
   private recalculate() {
     this.itemCount = 0;
     this.cartPrice = 0;
-    this.lines.forEach(l => {
-      this.itemCount += l.quantity
-      // @ts-ignore
-      this.cartPrice += (l.quantity * l.product.price);
-    })
+    this.lines.forEach((l) => {
+      this.itemCount += l.quantity;
+      this.cartPrice += l.quantity * l.product.price;
+    });
   }
 }
 
-export class CartLine{
-
-  constructor(public product: Product,
-              public quantity: number) {}
+export class CartLine {
+  constructor(public product: IProduct, public quantity: number) {}
   get lineTotal() {
     // @ts-ignore
     return this.quantity * this.product.price;

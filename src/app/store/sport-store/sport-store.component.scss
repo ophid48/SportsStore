@@ -1,6 +1,151 @@
 .content {
-  app-nav-bar {
-    width: 100%;
-    position: fixed;
+  display: flex;
+  height: 100%;
+  width: 100%;
+
+  .left-content {
+    width: 361px;
+    height: 100%;
+    border-right: 1px solid #8D99AE;
+    padding-left: 10px;
+
+    .category {
+      font-size: 20px;
+      padding: 0 10px;
+    }
+    .category:hover {
+      cursor: pointer;
+      color: #801818;
+    }
+
+    .search {
+      width: 312px;
+    }
+  }
+
+  .right-content {
+    display: flex;
+    flex-grow: 1;
+    padding: 10px;
+    height: 100%;
+    gap: 10px;
+
+    .product-card {
+      padding: 10px 10px 0;
+      width: 300px;
+      height: 454px;
+      border: 1px solid #8D99AE;
+      border-radius: 10px;
+
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 10px;
+
+      .product-image {
+        width: 197px;
+        height: 155px;
+
+      }
+
+      .product-name {
+        padding: 5px 20px;
+        width: 100%;
+        font-size: 20px;
+      }
+
+      .product-desc {
+        width: 100%;
+        padding: 0 20px;
+        display: flex;
+        justify-content: space-between;
+
+        .desc-name {
+          color: #8D99AE;
+        }
+
+        .desc-value {
+
+        }
+      }
+
+      .price-bar {
+        padding: 10px 30px;
+        width: 100%;
+
+        display: flex;
+        justify-content: space-between;
+
+        .count-buttons, .remove, .add {
+          color: black;
+          height: 16px;
+        }
+
+
+        .count-buttons {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+
+          .count {
+            width: 10px;
+          }
+        }
+      }
+
+      .cart-button {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        background: #EF233C;
+        color: white;
+        border-radius: 5px;
+        width: 177px;
+        height: 39px;
+        cursor: pointer;
+
+      }
+
+      .cart-button:hover {
+        background: #c71b2f;
+      }
+    }
+  }
+}
+
+.name {
+  font-size: 25px;
+  padding: 10px;
+}
+
+.line {
+
+}
+
+.selectedCategory {
+  color: #c71b2f;
+}
+
+.range {
+  width: 312px;
+  display: flex;
+  justify-content: space-between;
+
+  .from, .to {
+    display: flex;
+    input {
+      width: 80px;
+      border: none;
+    }
+  }
+
+
+  .range-text {
+    color: #8D99AE;
+  }
+
+  .range-value {
+    flex-grow: 1;
   }
 }

@@ -8,6 +8,7 @@
   height: 73px;
   align-items: center;
   gap: 69px;
+  border-bottom: 1px solid #8D99AE;
 
 
   .logo-sector {
@@ -43,46 +44,102 @@
       display: flex;
       justify-content: center;
       align-items: center;
-
       height: 73px;
 
-      .buttons {
+
+    }
+
+    .second-nav-elements * {
+      cursor: pointer;
+    }
+
+    .second-nav-elements {
+      display: flex;
+      gap: 20px;
+      height: 50px;
+      font-size: 17px;
+
+      .cart.selected:after {
+        border-bottom: solid 3px #ef233c !important;
+      }
+
+      .cart:after {
+        display:block;
+        content: '';
+        border-bottom: solid 3px #ef233c;
+        transform: scaleX(0);
+        transition: transform 250ms ease-in-out;
+      }
+
+      .cart:hover:after {
+        transform: scaleX(1);
+      }
+
+      .cart {
+        align-items: center;
+        gap: 10px;
+        padding: 0 10px 0;
+
+
+        .icon {
+          padding-top: 3px;
+          font-size: 30px !important;
+        }
+      }
+
+      .login {
         display: flex;
-        margin: 10px;
-        padding: 10px;
-        height: 100%;
-        width: fit-content;
-        gap: 20px;
+        justify-content: center;
+        align-items: center;
 
-        .button.selected:after {
-          border-bottom: solid 3px #ef233c !important;
-          transform: scaleX(1);
+        .text {
+
         }
 
-        .button {
-          padding-top: 12px;
-          font-size: 17px;
-          height: 100%;
-        }
-
-        .button:after {
-          display:block;
-          content: '';
-          border-bottom: solid 3px #ef233c;
-          transform: scaleX(0);
-          transition: transform 250ms ease-in-out;
-        }
-
-        .button:hover:after {
-          transform: scaleX(1);
-        }
-
-        .button:hover {
-          cursor: pointer;
-        }
+      }
+      .sign-in {
+        display: flex;
+        justify-content: center;
+        align-items: center;
       }
     }
   }
 }
 
 
+.buttons {
+  display: flex;
+  margin: 10px;
+  padding: 10px;
+  height: 100%;
+  width: fit-content;
+  gap: 20px;
+}
+
+.button.selected:after {
+  border-bottom: solid 3px #ef233c !important;
+  transform: scaleX(1);
+}
+
+.button {
+  padding-top: 12px;
+  font-size: 17px;
+  height: 100%;
+  white-space: nowrap;
+}
+
+.button:after {
+  display:block;
+  content: '';
+  border-bottom: solid 3px #ef233c;
+  transform: scaleX(0);
+  transition: transform 250ms ease-in-out;
+}
+
+.button:hover:after {
+  transform: scaleX(1);
+}
+
+.button:hover {
+  cursor: pointer;
+}

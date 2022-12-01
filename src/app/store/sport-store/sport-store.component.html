@@ -1,4 +1,131 @@
 <div class="content">
-  <app-nav-bar></app-nav-bar>
-  <router-outlet></router-outlet>
+  <div class="left-content">
+    <div class="search">
+      <igx-input-group>
+        <input
+          #input
+          [(ngModel)]="searchText"
+          (change)="changeHandlerEvent()"
+          igxInput
+          id="fullName"
+          name="fullName"
+          type="text"
+        />
+        <label igxLabel for="fullName">Поиск</label>
+      </igx-input-group>
+    </div>
+    <div class="line"></div>
+    <div class="name">Категория</div>
+    <ng-container *ngIf="categories$ | async as categories">
+      <ng-container *ngFor="let category of categories">
+        <div
+          [class.selectedCategory]="selectCategory$.value === category.id"
+          (click)="filterByCategory(category)"
+          class="category"
+        >
+          {{ category.category_name }}
+        </div>
+      </ng-container>
+    </ng-container>
+    <div class="line"></div>
+    <div class="range">
+      <div class="from">
+        <igx-input-group>
+          <input
+            #input
+            [(ngModel)]="from"
+            igxInput
+            id="from"
+            name="from"
+            type="number"
+          />
+          <label igxLabel for="fullName">От</label>
+        </igx-input-group>
+      </div>
+      <div class="to">
+        <igx-input-group>
+          <input
+            #input
+            [(ngModel)]="to"
+            igxInput
+            id="to"
+            name="to"
+            type="number"
+          />
+          <label igxLabel for="fullName">До</label>
+        </igx-input-group>
+        <button (click)="setPrice()">Применить</button>
+      </div>
+    </div>
+  </div>
+  <div class="right-content">
+    <ng-container
+      *ngIf="(filteredProducts$ | async) || (products$ | async) as products"
+    >
+      <ng-container
+        *ngIf="cartService.cartProducts$ | async as cartProducts"
+      ></ng-container>
+      <ng-container *ngFor="let product of products">
+        <div class="product-card">
+          <div class="product-image">
+            <img src="assets/images/sport.png" />
+          </div>
+          <div class="product-name">
+            {{ product.product_name }}
+          </div>
+          <div class="product-desc">
+            <div class="desc-name">Материал</div>
+            <div class="desc-value">{{ product.material }}</div>
+          </div>
+          <div class="product-desc">
+            <div class="desc-name">Размер</div>
+            <div class="desc-value">{{ product.size }}</div>
+          </div>
+          <div class="product-desc">
+            <div class="desc-name">Вес товара</div>
+            <div class="desc-value">{{ product.weight }}</div>
+          </div>
+          <div class="price-bar">
+            <div class="price">
+              {{
+                product.price | currency: "RUB":"symbol-narrow":"1.1-1":"ru-RU"
+              }}
+            </div>
+            <div class="count-buttons">
+              <ng-container *ngIf="checkCart(product.id)">
+                <div class="remove">
+                  <ion-icon
+                    (click)="addToCart(product, -1)"
+                    name="remove-outline"
+                  ></ion-icon>
+                </div>
+                <div class="count">{{ getCount(product.id) }}</div>
+                <div class="add">
+                  <ion-icon
+                    (click)="addToCart(product)"
+                    name="add-outline"
+                  ></ion-icon>
+                </div>
+              </ng-container>
+            </div>
+          </div>
+          <div
+            *ngIf="!checkCart(product.id)"
+            (click)="addToCart(product)"
+            class="cart-button"
+          >
+            Добавить в корзину
+          </div>
+          <div
+            *ngIf="checkCart(product.id)"
+            (click)="router.navigateByUrl('/cart')"
+            style="background: #6bc502"
+            class="cart-button"
+          >
+            Перейти в корзину
+          </div>
+        </div>
+      </ng-container>
+    </ng-container>
+  </div>
 </div>

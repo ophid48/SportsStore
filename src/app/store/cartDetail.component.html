@@ -1,58 +1,58 @@
-<div class="navbar navbar-dark bg-dark p-2">
-  <a class="navbar-brand">SPORTS STORE</a>
-</div>
-<div class="m-1">
-  <h2 class="text-center">Your Cart</h2>
-  <table class="table table-bordered table-striped p-1">
-    <thead>
-      <tr>
-        <th>Quantity</th>
-        <th>Product</th>
-        <th class="text-end">Price</th>
-        <th class="text-end">Subtotal</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr *ngIf="cart.lines.length == 0">
-        Your cart is empty
-      </tr>
-      <tr *ngFor="let line of cart.lines">
-        <td>
-          <input type="number" class="form-control-sm"
-                 style="width:5em"
-                 [value]="line.quantity"
-                 (change)="cart.updateQuantity(line.product,
-                           $any($event.target).value)"/>
-        </td>
-        <td>{{ line.product.name }}</td>
-        <td class="text-end">
-          {{ line.product.price | currency:"USD":true:"2.2-2" }}
-        </td>
-        <td class="text-end">
-          {{ line.lineTotal | currency:"USD":true:"2.2-2" }}
-        </td>
-        <td class="text-center">
-          <button class="btn btn-sm btn-danger"
-                  (click)="cart.removeLine((line.product.id)!)">
-            Remove
-          </button>
-        </td>
-      </tr>
-    </tbody>
-    <tfoot>
-      <tr>
-        <td colspan="3" class="text-end">Total:</td>
-        <td class="text-end">
-          {{ cart.cartPrice | currency:"USD":true:"2.2-2"}}
-        </td>
-      </tr>
-    </tfoot>
-  </table>
-</div>
-<div class="text-center">
-  <button class="btn btn-primary" routerLink="/store">Continue Shopping</button>
-  <button class="btn btn-secondary" routerLink="/checkout"
-          [disabled]="cart.lines.length == 0">
-    Checkout
-  </button>
-</div>
+<!--<div class="navbar navbar-dark bg-dark p-2">-->
+<!--  <a class="navbar-brand">SPORTS STORE</a>-->
+<!--</div>-->
+<!--<div class="m-1">-->
+<!--  <h2 class="text-center">Your Cart</h2>-->
+<!--  <table class="table table-bordered table-striped p-1">-->
+<!--    <thead>-->
+<!--      <tr>-->
+<!--        <th>Quantity</th>-->
+<!--        <th>Product</th>-->
+<!--        <th class="text-end">Price</th>-->
+<!--        <th class="text-end">Subtotal</th>-->
+<!--      </tr>-->
+<!--    </thead>-->
+<!--    <tbody>-->
+<!--      <tr *ngIf="cart.lines.length == 0">-->
+<!--        Your cart is empty-->
+<!--      </tr>-->
+<!--      <tr *ngFor="let line of cart.lines">-->
+<!--        <td>-->
+<!--          <input type="number" class="form-control-sm"-->
+<!--                 style="width:5em"-->
+<!--                 [value]="line.quantity"-->
+<!--                 (change)="cart.updateQuantity(line.product,-->
+<!--                           $any($event.target).value)"/>-->
+<!--        </td>-->
+<!--        <td>{{ line.product.name }}</td>-->
+<!--        <td class="text-end">-->
+<!--          {{ line.product.price | currency:"USD":true:"2.2-2" }}-->
+<!--        </td>-->
+<!--        <td class="text-end">-->
+<!--          {{ line.lineTotal | currency:"USD":true:"2.2-2" }}-->
+<!--        </td>-->
+<!--        <td class="text-center">-->
+<!--          <button class="btn btn-sm btn-danger"-->
+<!--                  (click)="cart.removeLine((line.product.id)!)">-->
+<!--            Remove-->
+<!--          </button>-->
+<!--        </td>-->
+<!--      </tr>-->
+<!--    </tbody>-->
+<!--    <tfoot>-->
+<!--      <tr>-->
+<!--        <td colspan="3" class="text-end">Total:</td>-->
+<!--        <td class="text-end">-->
+<!--          {{ cart.cartPrice | currency:"USD":true:"2.2-2"}}-->
+<!--        </td>-->
+<!--      </tr>-->
+<!--    </tfoot>-->
+<!--  </table>-->
+<!--</div>-->
+<!--<div class="text-center">-->
+<!--  <button class="btn btn-primary" routerLink="/store">Continue Shopping</button>-->
+<!--  <button class="btn btn-secondary" routerLink="/checkout"-->
+<!--          [disabled]="cart.lines.length == 0">-->
+<!--    Checkout-->
+<!--  </button>-->
+<!--</div>-->

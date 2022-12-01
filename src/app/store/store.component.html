@@ -4,13 +4,12 @@
     <card-summary></card-summary>
 </div>-->
 
-<div class="" style="height: 73px">
-  <app-nav-bar></app-nav-bar>
-  <!--    <div class="col bg-dark text-white">-->
-  <!--      <a class="navbar-brand position-fixed text-white">SPORTS STORE</a>-->
-  <!--      <card-summary></card-summary>-->
-  <!--    </div>-->
-</div>
+<!--<div class="" style="height: 73px">-->
+<!--    <div class="col bg-dark text-white">-->
+<!--      <a class="navbar-brand position-fixed text-white">SPORTS STORE</a>-->
+<!--      <card-summary></card-summary>-->
+<!--    </div>-->
+<!--</div>-->
 
 <div class="col-3 p-1 float-start d-grid gap-2 mt-2">
   <button class="btn d-block btn-primary" (click)="changeCategory()">
@@ -37,12 +36,7 @@
     </h4>
     <div class="card-text p-1">
       {{ product.description }}
-      <button
-        class="btn btn-success btn-sm float-end me-2"
-        (click)="addProductToCart(product)"
-      >
-        Add To Cart
-      </button>
+      <button class="btn btn-success btn-sm float-end me-2">Add To Cart</button>
     </div>
   </div>
   <div class="form-check-inline float-start ms-2">

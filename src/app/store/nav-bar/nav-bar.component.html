@@ -36,5 +36,21 @@
         </div>
       </div>
     </div>
+    <div class="second-nav-elements">
+      <div
+        class="cart"
+        [class.selected]="isSelect('cart')"
+        (click)="navClick('cart')"
+      >
+        <div class="icon">
+          <ion-icon name="cart"></ion-icon>
+        </div>
+        <div class="text" style="float: right">Корзина</div>
+      </div>
+      <div class="login">
+        <div class="text">Войти</div>
+      </div>
+      <div class="sign-in">Зарегистрироваться</div>
+    </div>
   </div>
 </div>

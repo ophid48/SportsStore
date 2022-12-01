@@ -1,0 +1,66 @@
+.content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  .title {
+    font-family: 'Inter', serif;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 64px;
+    line-height: 77px;
+  }
+
+  .description {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    padding: 10px;
+    gap: 10px;
+
+    width: 1320px;
+    height: 547px;
+
+    p {
+      font-family: 'Inter', serif;
+      font-style: normal;
+      font-weight: 400;
+      font-size: 32px;
+      line-height: 39px;
+
+      width: 647px;
+    }
+  }
+
+  .links {
+
+    .links-text {
+      font-family: 'Inter', serif;
+      font-style: normal;
+      font-weight: 400;
+      font-size: 36px;
+      line-height: 44px;
+
+      text-align: center;
+    }
+
+    .photos {
+      display: flex;
+      flex-direction: row;
+
+      .twitter {
+        width: 300px;
+        height: 300px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+    }
+
+    .photos * {
+      cursor: pointer;
+    }
+
+  }
+}

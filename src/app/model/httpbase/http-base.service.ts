@@ -1,10 +1,7 @@
-import {
-  HttpClient,
-  HttpErrorResponse,
-  HttpHeaders,
-} from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { MyCookieService } from '../cookie/my-cookie.service';
-import { retry, Observable } from 'rxjs';
+import { Observable } from 'rxjs';
+import { IProduct } from '../product/product.model';
 
 export class HttpBase<T> {
   constructor(
@@ -40,6 +37,13 @@ export class HttpBase<T> {
 
   deleteById(id: number) {
     return this._http.delete<T>(`${this.apiBase}/${id}`, this.getOptions());
+  }
+
+  getJoinedProduct(): Observable<IProduct[]> {
+    return this._http.get<IProduct[]>(
+      '/api/v1/products/joined_products',
+      this.getOptions()
+    );
   }
 
   private getOptions() {
