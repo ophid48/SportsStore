@@ -1,0 +1,145 @@
+<form [formGroup]="userForm">
+  <div class="form-group">
+    <label>Имя</label>
+    <input
+      formControlName="first_name"
+      required
+      [class.is-valid]="checkValid('first_name')"
+      [class.is-invalid]="!checkValid('first_name')"
+      class="form-control"
+      name="name"
+    />
+    <span *ngIf="userForm.controls.first_name.invalid" class="text-danger">
+      Укажите имя
+    </span>
+  </div>
+  <div class="form-group">
+    <label>Фамилия</label>
+    <input
+      formControlName="last_name"
+      class="form-control"
+      name="name"
+      [class.is-valid]="checkValid('last_name')"
+      [class.is-invalid]="!checkValid('last_name')"
+    />
+  </div>
+  <div class="form-group">
+    <label>Логин</label>
+    <input
+      formControlName="login"
+      class="form-control"
+      [class.is-valid]="checkValid('login')"
+      [class.is-invalid]="!checkValid('login')"
+    />
+  </div>
+  <div class="form-group">
+    <label>Аватар</label>
+    <input
+      (change)="onAvatarChange($event)"
+      accept="image/*"
+      type="file"
+      class="form-control"
+      id="inputGroupFile01"
+      [class.is-valid]="checkValid('avatar')"
+      [class.is-invalid]="!checkValid('avatar')"
+    />
+    <!--    <input-->
+    <!--      formControlName="login"-->
+    <!--      class="form-control"-->
+    <!--      [class.is-valid]="checkValid('login')"-->
+    <!--      [class.is-invalid]="!checkValid('login')"-->
+    <!--    />-->
+  </div>
+  <div class="form-group">
+    <label>Фон профиля</label>
+    <input
+      (change)="onWallpaperChange($event)"
+      accept="image/*"
+      type="file"
+      class="form-control"
+      id="inputGroupFile02"
+      [class.is-valid]="checkValid('wallpaper')"
+      [class.is-invalid]="!checkValid('wallpaper')"
+    />
+    <!--    <input-->
+    <!--      formControlName="login"-->
+    <!--      class="form-control"-->
+    <!--      [class.is-valid]="checkValid('login')"-->
+    <!--      [class.is-invalid]="!checkValid('login')"-->
+    <!--    />-->
+  </div>
+
+  <div class="form-group">
+    <label>Пароль</label>
+    <input
+      formControlName="password"
+      class="form-control"
+      name="name"
+      type="password"
+      [class.is-valid]="checkValid('password')"
+      [class.is-invalid]="!checkValid('password')"
+    />
+  </div>
+  <div class="form-group">
+    <label>Номер</label>
+    <input
+      formControlName="number"
+      class="form-control"
+      name="name"
+      [class.is-valid]="checkValid('number')"
+      [class.is-invalid]="!checkValid('number')"
+    />
+  </div>
+  <div class="form-group">
+    <label>Email</label>
+    <input
+      type="email"
+      formControlName="email"
+      class="form-control"
+      name="name"
+      [class.is-valid]="checkValid('email')"
+      [class.is-invalid]="!checkValid('email')"
+    />
+  </div>
+  <div class="form-group">
+    <label>Address</label>
+    <input
+      type="email"
+      formControlName="address"
+      class="form-control"
+      name="name"
+      [class.is-valid]="checkValid('address')"
+      [class.is-invalid]="!checkValid('address')"
+    />
+  </div>
+  <div class="form-group">
+    <label>Роль</label>
+    <select
+      class="form-select"
+      formControlName="role_id"
+      [class.is-valid]="checkValid('role_id')"
+      [class.is-invalid]="!checkValid('role_id')"
+    >
+      <option selected disabled value="">Choose...</option>
+      <option *ngFor="let role of roles$ | async" [value]="role.id">
+        {{ role.role_name }}
+      </option>
+      <div *ngIf="userForm.controls.role_id.invalid" class="invalid-feedback">
+        Не правильно
+      </div>
+    </select>
+  </div>
+  <button
+    type="submit"
+    (click)="save()"
+    class="btn btn-primary m-1"
+    [disabled]="userForm.invalid"
+    [class.btn-warning]="isEdit"
+  >
+    {{ isEdit ? "Save" : "Create" }}
+  </button>
+  <button class="btn btn-primary m-1" (click)="log(userForm.errors)"></button>
+  <button (click)="closeEdit()" type="reset" class="btn btn-secondary">
+    Cancel
+  </button>
+</form>

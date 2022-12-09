@@ -1,0 +1,54 @@
+<div style="margin-bottom: 20px">
+  <h5 *ngIf="!isOpen">Продукты</h5>
+  <h5 *ngIf="isOpen">
+    {{ isEdit ? "Редактирование продукта" : "Добавление продукта" }}
+  </h5>
+</div>
+<ng-container *ngIf="!isOpen; else edit">
+  <table class="table table-sm table-striped">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Category</th>
+        <th>Material</th>
+        <th>Size</th>
+        <th>Weight</th>
+        <th>Price</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let p of products$ | async; let i = index">
+        <td>{{ p.id }}</td>
+        <td>{{ p.product_name }}</td>
+        <td>{{ p.category.category_name }}</td>
+        <td>{{ p.material }}</td>
+        <td>{{ p.size }}</td>
+        <td>{{ p.weight }}</td>
+        <td>{{ p.price }}</td>
+        <td>
+          <button
+            (click)="product$.next(p); isEdit = true; isOpen = true"
+            class="btn btn-sm btn-warning m-1"
+          >
+            Edit
+          </button>
+          <button class="btn btn-sm btn-danger" (click)="deleteProduct(p.id)">
+            Delete
+          </button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  <button (click)="isOpen = true" class="btn btn-primary">
+    Create New Product
+  </button>
+</ng-container>
+<ng-template #edit
+  ><app-product-edit
+    (closeEditor)="closeEditor($event)"
+    [product]="product$ | async"
+    [isEdit]="isEdit"
+  ></app-product-edit>
+</ng-template>

@@ -3,14 +3,12 @@ import { Observable } from 'rxjs';
 import { RestDataSource } from './rest.datasource';
 import { UserService } from './user/user.service';
 import { map } from 'rxjs/operators';
-import { MyCookieService } from './cookie/my-cookie.service';
 
 @Injectable()
 export class AuthService {
   constructor(
     private datasource: RestDataSource,
-    private userService: UserService,
-    private cookieService: MyCookieService
+    private userService: UserService
   ) {}
 
   authenticate(username: string, password: string): Observable<boolean> {

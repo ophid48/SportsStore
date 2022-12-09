@@ -1,32 +1,36 @@
 <div class="container-fluid">
-<div class="row">
-  <div class="col bg-dark ">
-    <a class="navbar-brand text-white">SPORTS STORE</a>
+  <div class="row">
+    <div class="col bg-dark">
+      <a class="navbar-brand text-white">SPORTS STORE</a>
+    </div>
   </div>
-</div>
-<div class="row mt-2">
-  <div class="col-3" style="display: flex; flex-direction: column;">
-    <button class="btn btn-outline-info btn-block mb-1"
-            routerLink="/admin/main/products"
-            routerLinkActive="active">
-      Products
-    </button>
-    <button class="btn btn-outline-info btn-block mb-1"
-            routerLink="/admin/main/orders"
-            routerLinkActive="active">
-      Orders
-    </button>
-    <button class="btn btn-outline-info btn-block mb-1"
-            routerLink="/admin/main/users"
-            routerLinkActive="active">
-      Users
-    </button>
-    <button class="btn btn-outline-danger btn-block mb-1" (click)="logout()">
-      Logout
-    </button>
+  <div class="row mt-2">
+    <div class="col-3" style="display: flex; flex-direction: column">
+      <button
+        class="btn btn-outline-info btn-block mb-1"
+        routerLink="/admin/main/products"
+        routerLinkActive="active"
+      >
+        Products
+      </button>
+      <button
+        class="btn btn-outline-info btn-block mb-1"
+        routerLink="/admin/main/orders"
+        routerLinkActive="active"
+      >
+        Orders
+      </button>
+      <button
+        class="btn btn-outline-info btn-block mb-1"
+        routerLink="/admin/main/users"
+        routerLinkActive="active"
+      >
+        Users
+      </button>
+      <button class="btn btn-outline-danger btn-block mb-1" (click)="logout()">
+        Logout
+      </button>
+    </div>
+    <div class="col-9"></div>
   </div>
-  <div class="col-9">
-    <router-outlet></router-outlet>
-  </div>
-</div>
 </div>

@@ -1,14 +1,13 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { MyCookieService } from '../cookie/my-cookie.service';
 import { Observable } from 'rxjs';
 import { IProduct } from '../product/product.model';
+import { CookieService } from 'ngx-cookie-service';
+import { inject } from '@angular/core';
 
 export class HttpBase<T> {
-  constructor(
-    private _http: HttpClient,
-    public readonly apiBase: string,
-    private cookieService: MyCookieService
-  ) {}
+  cookieService = inject(CookieService);
+
+  constructor(private _http: HttpClient, public readonly apiBase: string) {}
 
   getAll() {
     return this._http.get<T[]>(this.apiBase, this.getOptions());
@@ -47,8 +46,7 @@ export class HttpBase<T> {
   }
 
   private getOptions() {
-    const access_token =
-      this.cookieService.getCookieByName('token').access_token;
+    const access_token = JSON.parse(this.cookieService.get('token'));
     // console.log('"Authorization": ' + `Bearer ${access_token}`);
     return {
       headers: new HttpHeaders({

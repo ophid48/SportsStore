@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ModelModule } from '../model/model.module';
 import { StoreComponent } from './store.component';
 import { CounterDirective } from './counter.directive';
@@ -13,8 +13,13 @@ import { SportStoreComponent } from './sport-store/sport-store.component';
 import { AboutComponent } from './about/about.component';
 import { AccountComponent } from './account/account.component';
 import { IonicModule } from '@ionic/angular';
-import { IgxInputGroupModule } from 'igniteui-angular';
+import { IgxInputGroupModule, IgxSelectModule } from 'igniteui-angular';
 import { SportAdminComponent } from './sport-admin/sport-admin.component';
+import { ProductEditorComponent } from './sport-admin/admin-product/productEditor.component';
+import { OrderRepository } from '../model/order/order.repository';
+import { ProductTableComponent } from './sport-admin/admin-product/productTable.component';
+import { UserEditorComponent } from './sport-admin/user/userEditor.component';
+import { UserTableComponent } from './sport-admin/user/userTable.component';
 
 @NgModule({
   imports: [
@@ -24,6 +29,8 @@ import { SportAdminComponent } from './sport-admin/sport-admin.component';
     RouterModule,
     IonicModule,
     IgxInputGroupModule,
+    ReactiveFormsModule,
+    IgxSelectModule,
   ],
   declarations: [
     StoreComponent,
@@ -35,7 +42,11 @@ import { SportAdminComponent } from './sport-admin/sport-admin.component';
     SportStoreComponent,
     AboutComponent,
     AccountComponent,
+    UserEditorComponent,
+    UserTableComponent,
     SportAdminComponent,
+    ProductEditorComponent,
+    ProductTableComponent,
   ],
   exports: [
     StoreComponent,

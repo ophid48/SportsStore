@@ -1,14 +1,17 @@
 import { Injectable } from '@angular/core';
 import { HttpBase } from '../httpbase/http-base.service';
 import { HttpClient } from '@angular/common/http';
-import { MyCookieService } from '../cookie/my-cookie.service';
-import { IProduct } from './product.model';
+import { IProduct, IProductBase } from './product.model';
 
-@Injectable({
-  providedIn: 'root',
-})
 export class ProductService extends HttpBase<IProduct> {
-  constructor(http: HttpClient, cookieService: MyCookieService) {
-    super(http, '/api/v1/products', cookieService);
+  constructor(
+    private readonly http: HttpClient,
+    private readonly path = '/api/v1/products'
+  ) {
+    super(http, path);
+  }
+
+  postProduct(product: IProductBase) {
+    return this.http.post<IProduct>(this.path, product);
   }
 }

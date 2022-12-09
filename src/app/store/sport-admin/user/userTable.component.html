@@ -1,0 +1,54 @@
+<div style="margin-bottom: 20px">
+  <h5 *ngIf="!isOpen">Пользователи</h5>
+  <h5 *ngIf="isOpen">
+    {{ isEdit ? "Редактирование пользователя" : "Добавление пользователя" }}
+  </h5>
+</div>
+<ng-container *ngIf="!isOpen; else edit">
+  <table class="table table-sm table-striped">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>ФИО</th>
+        <th>Login</th>
+        <th>Number</th>
+        <th>Email</th>
+        <th>Address</th>
+        <th>Role</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let u of users$ | async; let i = index">
+        <td>{{ u.id }}</td>
+        <td>{{ u.first_name + " " + (u.last_name ?? "") }}</td>
+        <td>{{ u.login }}</td>
+        <td>{{ u.number }}</td>
+        <td>{{ u.email }}</td>
+        <td>{{ u.address }}</td>
+        <td>{{ u.role.role_name }}</td>
+        <td>
+          <button
+            (click)="user$.next(u); isEdit = true; isOpen = true"
+            class="btn btn-sm btn-warning m-1"
+          >
+            Edit
+          </button>
+          <button class="btn btn-sm btn-danger" (click)="deleteProduct(u.id)">
+            Delete
+          </button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  <button (click)="isOpen = true" class="btn btn-primary">
+    Create New User
+  </button>
+</ng-container>
+<ng-template #edit
+  ><app-user-edit
+    (closeEditor)="closeEditor($event)"
+    [user]="user$ | async"
+    [isEdit]="isEdit"
+  ></app-user-edit>
+</ng-template>

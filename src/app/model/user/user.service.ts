@@ -14,9 +14,9 @@ export class UserService extends HttpBase<IUser> {
   public isOpen = false;
   public isEdit = false;
 
-  constructor(http: HttpClient, cookieService: MyCookieService) {
-    const apiBase = 'api/v1/users/';
-    super(http, apiBase, cookieService);
+  constructor(private http: HttpClient) {
+    const apiBase = 'api/v1/users';
+    super(http, apiBase);
   }
 
   getAll(): Observable<IUser[]> {
@@ -28,7 +28,7 @@ export class UserService extends HttpBase<IUser> {
     );
   }
 
-  // create(user: ICreateUser): Observable<IUser> {
-  //   return this.http.post<IUser>(this.apiBase, user);
-  // }
+  create(user: ICreateUser): Observable<IUser> {
+    return this.http.post<IUser>(this.apiBase, user);
+  }
 }

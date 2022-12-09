@@ -1,0 +1,108 @@
+<form [formGroup]="productForm">
+  <div class="form-group">
+    <label>Имя</label>
+    <input
+      formControlName="product_name"
+      required
+      [class.is-valid]="checkValid('product_name')"
+      [class.is-invalid]="!checkValid('product_name')"
+      class="form-control"
+      name="name"
+    />
+    <span *ngIf="productForm.controls.product_name.invalid" class="text-danger">
+      Укажите имя продукта
+    </span>
+  </div>
+  <div class="form-group">
+    <label>Описание</label>
+    <input
+      formControlName="description"
+      class="form-control"
+      name="name"
+      [class.is-valid]="checkValid('description')"
+      [class.is-invalid]="!checkValid('description')"
+    />
+  </div>
+  <div class="form-group">
+    <label>Цена</label>
+    <input
+      formControlName="price"
+      class="form-control"
+      name="name"
+      [class.is-valid]="checkValid('price')"
+      [class.is-invalid]="!checkValid('price')"
+    />
+  </div>
+  <div class="form-group">
+    <label>Материал</label>
+    <input
+      formControlName="material"
+      class="form-control"
+      name="name"
+      [class.is-valid]="checkValid('material')"
+      [class.is-invalid]="!checkValid('material')"
+    />
+  </div>
+  <div class="form-group">
+    <label>Размер</label>
+    <input
+      formControlName="size"
+      class="form-control"
+      name="name"
+      [class.is-valid]="checkValid('size')"
+      [class.is-invalid]="!checkValid('size')"
+    />
+  </div>
+  <div class="form-group">
+    <label>Вес</label>
+    <input
+      formControlName="weight"
+      class="form-control"
+      name="name"
+      [class.is-valid]="checkValid('weight')"
+      [class.is-invalid]="!checkValid('weight')"
+    />
+  </div>
+  <div class="form-group">
+    <label>Категория</label>
+    <!--    <igx-select formControlName="categoryId">-->
+    <!--      <igx-select-item-->
+    <!--        *ngFor="let category of categories$ | async"-->
+    <!--        [value]="category.id"-->
+    <!--        >{{ category.category_name }}</igx-select-item-->
+    <!--      >-->
+    <!--    </igx-select>-->
+    <select
+      class="form-select"
+      formControlName="categoryId"
+      [class.is-valid]="checkValid('categoryId')"
+      [class.is-invalid]="!checkValid('categoryId')"
+    >
+      <option selected disabled value="">Choose...</option>
+      <option
+        *ngFor="let category of categories$ | async"
+        [value]="category.id"
+      >
+        {{ category.category_name }}
+      </option>
+      <div
+        *ngIf="productForm.controls.categoryId.invalid"
+        class="invalid-feedback"
+      >
+        Не правильно
+      </div>
+    </select>
+  </div>
+  <button
+    type="submit"
+    (click)="save()"
+    class="btn btn-primary m-1"
+    [disabled]="productForm.invalid"
+    [class.btn-warning]="isEdit"
+  >
+    {{ isEdit ? "Save" : "Create" }}
+  </button>
+  <button (click)="closeEdit()" type="reset" class="btn btn-secondary">
+    Cancel
+  </button>
+</form>

@@ -1,1 +1,18 @@
-<p>sport-admin works!</p>
+<div class="content">
+  <div class="left-content">
+    <div (click)="mode = 'Product'" class="catalog">Продукты</div>
+    <div (click)="mode = 'Order'" class="catalog">Заказы</div>
+    <div (click)="mode = 'User'" class="catalog">Пользователи</div>
+  </div>
+  <div class="right-content">
+    <ng-container *ngIf="mode === 'Product'">
+      <app-product-table></app-product-table>
+    </ng-container>
+    <ng-container *ngIf="mode === 'Order'">
+      <app-product-table></app-product-table>
+    </ng-container>
+    <ng-container *ngIf="mode === 'User'">
+      <app-user-table></app-user-table>
+    </ng-container>
+  </div>
+</div>

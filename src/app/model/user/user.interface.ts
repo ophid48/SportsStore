@@ -1,9 +1,19 @@
 export interface IUser {
-  user_id: number;
+  id: number;
   first_name: string;
   login: string;
   password: string;
+
+  number: string;
+  email: string;
+  address: string;
+  role: {
+    id: string;
+    role_name: string;
+  };
   last_name?: string;
+  avatar?: string;
+  wallpaper?: string;
 }
 
 export interface IToken {
@@ -15,7 +25,14 @@ export interface ICreateUser {
   first_name: string;
   login: string;
   password: string;
+
+  number: string;
+  email: string;
+  address: string;
+  role_id: number;
   last_name?: string;
+  avatar?: string;
+  wallpaper?: string;
 }
 
 export class User {

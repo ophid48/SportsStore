@@ -8,18 +8,20 @@ export class Product {
   ) {}
 }
 
-export interface IProduct {
+export interface IProductBase {
   product_name: string;
   description: string;
   price: number;
   material: string;
   size: string;
   weight: number;
-  colors: string;
   categoryId: number;
-  id: number;
+}
+
+export interface IProduct extends IProductBase {
   category: {
     category_name: 'string';
     id: number;
   };
+  id: number;
 }

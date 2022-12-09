@@ -1,0 +1,29 @@
+.content {
+  display: flex;
+  height: 100%;
+  width: 100%;
+
+  .left-content {
+    padding-top: 20px;
+    display: flex;
+    flex-direction: column;
+    width: 361px;
+    height: 100%;
+    border-right: 1px solid #8D99AE;
+    padding-left: 10px;
+    gap: 20px;
+
+    .catalog {
+      font-size: 20px;
+      padding: 0 10px;
+      cursor: pointer;
+    }
+    .catalog:hover {
+      color: #801818;
+    }
+  }
+  .right-content {
+    flex-grow: 1;
+    padding: 15px;
+  }
+}
