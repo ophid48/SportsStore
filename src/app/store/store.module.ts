@@ -20,6 +20,11 @@ import { OrderRepository } from '../model/order/order.repository';
 import { ProductTableComponent } from './sport-admin/admin-product/productTable.component';
 import { UserEditorComponent } from './sport-admin/user/userEditor.component';
 import { UserTableComponent } from './sport-admin/user/userTable.component';
+import { OrderTableComponent } from './sport-admin/admin-order/orderTable.component';
+import { OrderEditorComponent } from './sport-admin/admin-order/orderEditor.component';
+import { AuthModalComponent } from './auth-modal/auth-modal.component';
+import { AccountEditComponent } from './account/account-edit/account-edit.component';
+import { AccountOrdersComponent } from './account/account-orders/account-orders.component';
 
 @NgModule({
   imports: [
@@ -47,6 +52,11 @@ import { UserTableComponent } from './sport-admin/user/userTable.component';
     SportAdminComponent,
     ProductEditorComponent,
     ProductTableComponent,
+    OrderTableComponent,
+    OrderEditorComponent,
+    AuthModalComponent,
+    AccountEditComponent,
+    AccountOrdersComponent,
   ],
   exports: [
     StoreComponent,

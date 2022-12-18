@@ -1,28 +1,98 @@
-<div class="bg-primary p-2 text-white" [class.bg-warning]="editing"
-     [class.text-dark]="editing">
-  <h5>{{editing ? "Edit" : "Create" }} Product</h5>
-</div>
-<form novalidate #form="ngForm" (ngSubmit)="save(form)">
+<form [formGroup]="orderForm">
   <div class="form-group">
-    <label>Name</label>
-    <input class="form-control" name="name" [(ngModel)]="product.name">
+    <label>Адрес</label>
+    <input
+      formControlName="address"
+      required
+      [class.is-valid]="checkValid('address')"
+      [class.is-invalid]="!checkValid('address')"
+      class="form-control"
+      name="name"
+    />
+    <span *ngIf="orderForm.controls.address.invalid" class="text-danger">
+      Укажите адрес
+    </span>
   </div>
   <div class="form-group">
-    <label>Category</label>
-    <input class="form-control" name="category" [(ngModel)]="product.category">
+    <label>Город</label>
+    <input
+      formControlName="city"
+      class="form-control"
+      name="name"
+      [class.is-valid]="checkValid('city')"
+      [class.is-invalid]="!checkValid('city')"
+    />
   </div>
   <div class="form-group">
-    <label>Description</label>
-    <input class="form-control" name="description" [(ngModel)]="product.description">
+    <label>Страна</label>
+    <input
+      formControlName="country"
+      class="form-control"
+      name="name"
+      [class.is-valid]="checkValid('country')"
+      [class.is-invalid]="!checkValid('country')"
+    />
   </div>
   <div class="form-group">
-    <label>Price</label>
-    <input class="form-control" name="price" [(ngModel)]="product.price">
+    <label>Индекс</label>
+    <input
+      formControlName="zip"
+      class="form-control"
+      name="name"
+      [class.is-valid]="checkValid('zip')"
+      [class.is-invalid]="!checkValid('zip')"
+    />
   </div>
-  <button type="submit" class="btn btn-primary m-1" [class.btn-warning]="editing">
-    {{editing ? "Save" : "Create"}}
+  <div class="form-group">
+    <label>Описание заказа</label>
+    <input
+      formControlName="desc"
+      class="form-control"
+      name="name"
+      [class.is-valid]="checkValid('desc')"
+      [class.is-invalid]="!checkValid('desc')"
+    />
+  </div>
+  <!--  <div class="form-group">-->
+  <!--    <label>Вес</label>-->
+  <!--    <input-->
+  <!--      formControlName="weight"-->
+  <!--      class="form-control"-->
+  <!--      name="name"-->
+  <!--      [class.is-valid]="checkValid('weight')"-->
+  <!--      [class.is-invalid]="!checkValid('weight')"-->
+  <!--    />-->
+  <!--  </div>-->
+  <div class="form-group">
+    <label>Статус</label>
+    <select
+      class="form-select"
+      formControlName="status_id"
+      [class.is-valid]="checkValid('status_id')"
+      [class.is-invalid]="!checkValid('status_id')"
+    >
+      <option selected disabled value="">Choose...</option>
+      <option *ngFor="let status of statuses$ | async" [value]="status.id">
+        {{ status.status_name }}
+      </option>
+      <div
+        *ngIf="orderForm.controls.status_id.invalid"
+        class="invalid-feedback"
+      >
+        Не правильно
+      </div>
+    </select>
+  </div>
+  <button
+    type="submit"
+    (click)="save()"
+    class="btn btn-primary m-1"
+    [disabled]="orderForm.invalid"
+    [class.btn-warning]="isEdit"
+  >
+    {{ isEdit ? "Save" : "Create" }}
   </button>
-  <button type="reset" class="btn btn-secondary" routerLink="/admin/main/products">
+  <button (click)="closeEdit()" type="reset" class="btn btn-secondary">
     Cancel
   </button>
 </form>

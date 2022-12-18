@@ -113,7 +113,7 @@ export class UserEditorComponent implements OnInit {
       this.userService.patchById(newUser, this.user.id).subscribe({
         next: (res) => {
           console.log(res);
-          this.closeEditor.emit();
+          this.closeEditor.emit(res);
         },
         error: (e) => console.log(e.statusText),
       });
@@ -121,7 +121,7 @@ export class UserEditorComponent implements OnInit {
       this.userService.create(newUser).subscribe({
         next: (res) => {
           console.log(res);
-          this.closeEditor.emit();
+          this.closeEditor.emit(res);
         },
         error: (e) => console.log(e.statusText),
       });
@@ -133,7 +133,8 @@ export class UserEditorComponent implements OnInit {
   }
 
   checkValid(control: string) {
-    if (['avatar', 'wallpaper'].some((e) => e === control)) return true;
+    if (['avatar', 'wallpaper', 'last_name'].some((e) => e === control))
+      return true;
     else if ('password' === control)
       return this.isEdit || this.userForm.controls[control].valid;
     return this.userForm.controls[control].valid;

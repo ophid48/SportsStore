@@ -1,0 +1,137 @@
+<div class="content">
+  <div class="header-group">
+    <div class="wallpaper-group">
+      <ng-container *ngIf="user.wallpaper; else noWallpaper">
+        <div
+          style="background-image: url({{ user.wallpaper }})"
+          class="wallpaper"
+        ></div>
+      </ng-container>
+      <ng-template #noWallpaper>
+        <div class="default-wallpaper"></div>
+      </ng-template>
+    </div>
+    <div class="avatar-group">
+      <ng-container *ngIf="user.avatar; else noAvatar">
+        <img class="avatar" src="{{ user.avatar }}" alt="" />
+      </ng-container>
+      <ng-template #noAvatar>
+        <div class="default-avatar">Фото</div>
+      </ng-template>
+    </div>
+    <div class="title-group">
+      <span class="title-name">Профиль</span>
+      <span class="title-desc">Редактирование информации о себе</span>
+    </div>
+    <div class="button-group">
+      <button (click)="cancel()" class="button-cancel">Отмена</button>
+      <button (click)="save()" class="button-save">Сохранить</button>
+    </div>
+  </div>
+  <div class="form-group">
+    <form [formGroup]="userForm">
+      <div class="form-element">
+        <span class="form-element-title">Имя</span>
+        <input
+          formControlName="first_name"
+          class="form-control"
+          name="name"
+          [class.is-valid]="checkValid('first_name')"
+          [class.is-invalid]="!checkValid('first_name')"
+        />
+      </div>
+      <div class="form-element">
+        <span class="form-element-title">Фамилия</span>
+        <input
+          formControlName="last_name"
+          class="form-control"
+          name="name"
+          [class.is-valid]="checkValid('last_name')"
+          [class.is-invalid]="!checkValid('last_name')"
+        />
+      </div>
+      <div class="form-element">
+        <span class="form-element-title">Аватар</span>
+        <input
+          #inputAvatar
+          (change)="OnAvatarChange($event)"
+          hidden
+          type="file"
+          class="form-control"
+          name="name"
+        />
+        <div class="upload-group">
+          <button (click)="inputAvatar.click()" class="button-save">
+            Изменить аватар
+          </button>
+        </div>
+      </div>
+      <div class="form-element">
+        <span class="form-element-title">Фон</span>
+        <input
+          #inputWallpaper
+          (change)="onWallpaperChange($event)"
+          hidden
+          type="file"
+          class="form-control"
+          name="name"
+        />
+        <div class="upload-group">
+          <button (click)="inputWallpaper.click()" class="button-save">
+            Изменить фон
+          </button>
+        </div>
+      </div>
+      <div class="form-element">
+        <span class="form-element-title">Логин</span>
+        <input
+          formControlName="login"
+          class="form-control"
+          name="name"
+          [class.is-valid]="checkValid('login')"
+          [class.is-invalid]="!checkValid('login')"
+        />
+      </div>
+      <div class="form-element">
+        <span class="form-element-title">Пароль</span>
+        <input
+          formControlName="password"
+          class="form-control"
+          name="name"
+          [class.is-valid]="checkValid('password')"
+          [class.is-invalid]="!checkValid('password')"
+        />
+      </div>
+      <div class="form-element">
+        <span class="form-element-title">Телефон</span>
+        <input
+          formControlName="number"
+          class="form-control"
+          name="name"
+          [class.is-valid]="checkValid('number')"
+          [class.is-invalid]="!checkValid('number')"
+        />
+      </div>
+      <div class="form-element">
+        <span class="form-element-title">Email</span>
+        <input
+          formControlName="email"
+          class="form-control"
+          name="name"
+          [class.is-valid]="checkValid('email')"
+          [class.is-invalid]="!checkValid('email')"
+        />
+      </div>
+      <div class="form-element">
+        <span class="form-element-title">Адрес</span>
+        <input
+          formControlName="address"
+          class="form-control"
+          name="name"
+          [class.is-valid]="checkValid('address')"
+          [class.is-invalid]="!checkValid('address')"
+        />
+      </div>
+    </form>
+  </div>
+</div>

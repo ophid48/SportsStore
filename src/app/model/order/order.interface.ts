@@ -1,18 +1,27 @@
+import { IProduct } from '../product/product.model';
+import { IUser } from '../user/user.interface';
+import { IStatus } from '../status/status.interface';
+
 export interface IOrder {
   id: number;
-  name: string;
   address: string;
   city: string;
-  counry: string;
+  country: string;
   zip: string;
-  shipped: boolean;
+  statusid: number;
+  status: IStatus;
+  products: IProduct[];
+  users: IUser[];
+  desc: string;
 }
 
 export interface ICreateOrder {
-  name: string;
   address: string;
   city: string;
-  counry: string;
+  country: string;
   zip: string;
-  shipped: boolean;
+  statusid: number;
+  products: number[];
+  users: number[];
+  desc: string;
 }

@@ -1,0 +1,45 @@
+.content {
+  display: flex;
+
+  .left-content {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 20px 0 10px 10px;
+    gap: 10px;
+
+    width: 361px;
+    height: 1174px;
+
+    background: #FFFFFF;
+    border-right: 1px solid #8D99AE;
+
+    .catalog-active {
+      border-right: 4px solid #EF233C;
+    }
+    .catalog {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      gap: 10px;
+
+      width: 351px;
+      height: 40px;
+      color: black;
+
+      font-size: 20px;
+      padding: 0 10px;
+      cursor: pointer;
+    }
+    .catalog:hover {
+      color: #801818;
+    }
+  }
+
+  .right-content {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    height: 100%;
+  }
+}

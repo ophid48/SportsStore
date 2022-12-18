@@ -1,1 +1,26 @@
-<p>account works!</p>
+<div class="content">
+  <div class="left-content">
+    <div
+      [class.catalog-active]="mode === 'Edit'"
+      (click)="mode = 'Edit'"
+      class="catalog"
+    >
+      Редактирование профиля
+    </div>
+    <div
+      [class.catalog-active]="mode === 'Orders'"
+      (click)="mode = 'Orders'"
+      class="catalog"
+    >
+      Список заказов
+    </div>
+  </div>
+  <div class="right-content">
+    <ng-container *ngIf="mode === 'Edit'">
+      <app-account-edit></app-account-edit>
+    </ng-container>
+    <ng-container *ngIf="mode === 'Orders'">
+      <app-account-orders></app-account-orders>
+    </ng-container>
+  </div>
+</div>

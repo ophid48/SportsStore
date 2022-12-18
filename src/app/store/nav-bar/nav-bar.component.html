@@ -11,46 +11,173 @@
           [class.selected]="isSelect('catalog')"
           (click)="navClick('catalog')"
         >
-          Каталог
+          <div class="button-content">Каталог</div>
         </div>
         <div
           class="button"
           [class.selected]="isSelect('about')"
           (click)="navClick('about')"
         >
-          О компании
+          <div class="button-content">О компании</div>
         </div>
         <div
           class="button"
+          [hidden]="isNoAccess()"
           [class.selected]="isSelect('admin')"
           (click)="navClick('admin')"
         >
-          Администрирование
+          <div class="button-content">Администрирование</div>
         </div>
         <div
           class="button"
+          [hidden]="isNoAccess()"
           [class.selected]="isSelect('account')"
           (click)="navClick('account')"
         >
-          Управление аккаунтом
+          <div class="button-content">Управление аккаунтом</div>
         </div>
       </div>
     </div>
     <div class="second-nav-elements">
+      <div *ngIf="getUserName()" class="user-name">{{ getUserName() }}</div>
       <div
         class="cart"
         [class.selected]="isSelect('cart')"
         (click)="navClick('cart')"
       >
-        <div class="icon">
-          <ion-icon name="cart"></ion-icon>
+        <div class="cart-elements">
+          <ion-icon style="font-size: 30px" name="cart"></ion-icon>
+          <div class="text" style="float: right">Корзина</div>
         </div>
-        <div class="text" style="float: right">Корзина</div>
       </div>
+      <div class="icon"></div>
       <div class="login">
-        <div class="text">Войти</div>
+        <div
+          (click)="isLoginOpen = !isLoginOpen; isRegOpen = false"
+          class="text"
+        >
+          Войти
+        </div>
       </div>
-      <div class="sign-in">Зарегистрироваться</div>
+      <div
+        (click)="isRegOpen = !isRegOpen; isLoginOpen = false"
+        class="sign-in"
+      >
+        Зарегистрироваться
+      </div>
     </div>
   </div>
 </div>
+
+<ng-container *ngIf="isLoginOpen">
+  <form [formGroup]="loginForm">
+    <div class="login-group">
+      <span class="auth-title">Вход в систему</span>
+      <div class="form-group">
+        <label>Логин</label>
+        <input
+          formControlName="login"
+          class="form-control"
+          name="name"
+          [class.is-valid]="checkValid('login')"
+          [class.is-invalid]="!checkValid('login')"
+        />
+      </div>
+      <div class="form-group">
+        <label>Пароль</label>
+        <input
+          formControlName="password"
+          class="form-control"
+          type="password"
+          name="name"
+          [class.is-valid]="checkValid('password')"
+          [class.is-invalid]="!checkValid('password')"
+        />
+      </div>
+
+      <button
+        [disabled]="loginForm.invalid"
+        (click)="login()"
+        class="button-login"
+      >
+        Войти
+      </button>
+    </div>
+  </form>
+</ng-container>
+<ng-container *ngIf="isRegOpen">
+  <form [formGroup]="registerForm">
+    <div class="reg-group">
+      <span class="auth-title">Регистрация</span>
+      <div class="form-group">
+        <label>Логин</label>
+        <input
+          formControlName="login"
+          class="form-control"
+          name="name"
+          [class.is-valid]="checkValid('login')"
+          [class.is-invalid]="!checkValid('login')"
+        />
+      </div>
+      <div class="form-group">
+        <label>Пароль</label>
+        <input
+          formControlName="password"
+          class="form-control"
+          type="password"
+          name="name"
+          [class.is-valid]="checkValid('password')"
+          [class.is-invalid]="!checkValid('password')"
+        />
+      </div>
+      <div class="form-group">
+        <label>Имя</label>
+        <input
+          formControlName="first_name"
+          class="form-control"
+          name="name"
+          [class.is-valid]="checkValid('first_name')"
+          [class.is-invalid]="!checkValid('first_name')"
+        />
+      </div>
+      <div class="form-group">
+        <label>Номер</label>
+        <input
+          formControlName="number"
+          class="form-control"
+          name="name"
+          [class.is-valid]="checkValid('number')"
+          [class.is-invalid]="!checkValid('number')"
+        />
+      </div>
+      <div class="form-group">
+        <label>Email</label>
+        <input
+          formControlName="email"
+          class="form-control"
+          name="name"
+          [class.is-valid]="checkValid('email')"
+          [class.is-invalid]="!checkValid('email')"
+        />
+      </div>
+      <div class="form-group">
+        <label>Адрес</label>
+        <input
+          formControlName="address"
+          class="form-control"
+          name="name"
+          [class.is-valid]="checkValid('address')"
+          [class.is-invalid]="!checkValid('address')"
+        />
+      </div>
+
+      <button
+        [disabled]="registerForm.invalid"
+        (click)="register()"
+        class="button-login"
+      >
+        Создать аккаунт
+      </button>
+    </div>
+  </form>
+</ng-container>
