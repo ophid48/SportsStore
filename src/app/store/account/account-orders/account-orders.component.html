@@ -1,1 +1,51 @@
-<p>account-orders works!</p>
+<div class="content">
+  <div class="title">Заказы</div>
+  <div class="orders">
+    <div *ngFor="let order of Orders" class="order">
+      <div class="order-title">
+        <div class="title-date">
+          <span class="date">Заказ от 19 ноября</span>
+          <span class="id">Номер заказа: {{ order.id }}</span>
+        </div>
+        <div class="title-price">
+          <span>Оплачено {{ getTotalPrice(order) }}</span>
+        </div>
+      </div>
+      <div class="order-body">
+        <div class="left">
+          <ng-container *ngFor="let product of order.products">
+            <span class="name">{{ product.product_name }}</span>
+            <span class="price">{{ product.price + " " }} ₽</span>
+          </ng-container>
+        </div>
+
+        <div class="right">
+          <div class="right-title">Способ получения</div>
+          <div class="right-table">
+            <table>
+              <tr>
+                <td class="desc">Адрес</td>
+                <td class="value">{{ order.address }}</td>
+              </tr>
+              <tr>
+                <td class="desc">Получатель</td>
+                <td class="value">
+                  {{
+                    getUser(order).first_name +
+                      getUser(order).last_name +
+                      " " +
+                      getUser(order).number
+                  }}
+                </td>
+              </tr>
+              <tr>
+                <td class="desc">Дата доставки</td>
+                <td class="value">в четверг, 31 марта к 14:00</td>
+              </tr>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

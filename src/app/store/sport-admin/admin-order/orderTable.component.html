@@ -9,7 +9,8 @@
     <thead>
       <tr>
         <th>ID</th>
-        <th>Manager</th>
+        <th>User</th>
+        <th>Courier</th>
         <th>Products</th>
         <th>Status</th>
         <th>Price</th>
@@ -19,7 +20,8 @@
     <tbody>
       <tr *ngFor="let o of orders$ | async; let i = index">
         <td>{{ o.id }}</td>
-        <td>{{ getManager(o) }}</td>
+        <td>{{ getUser(o) }}</td>
+        <td>{{ getCourier(o) }}</td>
         <td>{{ getProducts(o) }}</td>
         <td>{{ o.status.status_name }}</td>
         <td>{{ getPrice(o) }}</td>

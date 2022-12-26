@@ -1,4 +1,10 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import {
+  AfterViewChecked,
+  Component,
+  EventEmitter,
+  Input,
+  Output,
+} from '@angular/core';
 
 import { ActivatedRoute, Router } from '@angular/router';
 import {
@@ -17,19 +23,29 @@ import { ICreateOrder, IOrder } from '../../../model/order/order.interface';
 import { OrderService } from '../../../model/order/order.service';
 import { StatusService } from '../../../model/status/status.service';
 import { IStatus } from '../../../model/status/status.interface';
+import { UserService } from '../../../model/user/user.service';
+import { IUser } from '../../../model/user/user.interface';
 
 @Component({
   selector: 'app-order-edit',
   styleUrls: ['orderEditor.component.scss'],
   templateUrl: 'orderEditor.component.html',
 })
-export class OrderEditorComponent {
+export class OrderEditorComponent implements AfterViewChecked {
   @Input() isEdit: boolean = false;
   @Input() order: IOrder | null;
 
   @Output() closeEditor = new EventEmitter<void | IOrder>();
 
   public orderForm: FormGroup;
+  public userControl: FormControl = new FormControl(
+    undefined,
+    Validators.required
+  );
+  public courierControl: FormControl = new FormControl(
+    undefined,
+    Validators.required
+  );
 
   statuses$: BehaviorSubject<IStatus[] | null> = new BehaviorSubject<
     IStatus[] | null
@@ -37,6 +53,12 @@ export class OrderEditorComponent {
   categories$: BehaviorSubject<IStatus[] | null> = new BehaviorSubject<
     IStatus[] | null
   >(null);
+  couriers$: BehaviorSubject<IUser[] | null> = new BehaviorSubject<
+    IUser[] | null
+  >(null);
+  users$: BehaviorSubject<IUser[] | null> = new BehaviorSubject<IUser[] | null>(
+    null
+  );
 
   closeEdit(order?: IOrder) {
     this.closeEditor.emit(order);
@@ -45,35 +67,69 @@ export class OrderEditorComponent {
   constructor(
     private orderService: OrderService,
     private fb: FormBuilder,
-    private statusService: StatusService
+    private statusService: StatusService,
+    private userService: UserService
   ) {
     this.statusService.getAll().subscribe((res) => this.statuses$.next(res));
+    this.userService.getAll().subscribe((res) => {
+      console.log(res);
+      this.couriers$.next(res.filter((f) => f.role.role_name === 'Курьер'));
+      this.users$.next(
+        res.filter((f) => ['Админ', 'Пользователь'].includes(f.role.role_name))
+      );
+    });
+  }
+
+  ngAfterViewChecked(): void {
+    // console.log(this.orderForm.value);
   }
 
   save() {
-    // const data = this.productForm.value;
-    // const newProduct: ICreateOrder = {
-    //   product_name: data.product_name,
-    //   description: data.description,
-    //   price: data.price,
-    //   material: data.material,
-    //   size: data.size,
-    //   weight: data.weight,
-    //   categoryId: data.categoryId,
-    // };
-    //
-    // if (this.isEdit && this.order) {
-    //   this.orderService.putById(newProduct, this.order.id).subscribe((res) => {
-    //     this.closeEdit(res);
-    //   });
-    // } else
-    //   this.orderService.postProduct(newProduct).subscribe((res) => {
-    //     this.closeEdit(res);
-    //   });
+    const data = this.orderForm.value;
+    const owner = this.userControl.value;
+    const courier = this.courierControl.value;
+    const newProduct: ICreateOrder = {
+      address: data.address,
+      city: data.city,
+      country: data.country,
+      zip: data.zip,
+      statusid: data.status_id,
+      owner: owner,
+      courier: courier,
+      desc: data.desc,
+    };
+
+    if (this.isEdit && this.order) {
+      this.orderService
+        .patchOrder(newProduct, this.order.id)
+        .subscribe((res) => {
+          this.closeEdit(res);
+        });
+    } else
+      this.orderService.postOrder(newProduct).subscribe((res) => {
+        this.closeEdit(res);
+      });
   }
 
   ngOnInit(): void {
-    console.log(this.order);
+    if (this.order) {
+      console.log(this.order.users);
+      const courier =
+        this.order.users.filter((f) => f.role.role_name === 'Курьер').length > 0
+          ? this.order.users.filter((f) => f.role.role_name === 'Курьер')[0].id
+          : '';
+      const owner =
+        this.order.users.filter((f) =>
+          ['Админ', 'Пользователь'].includes(f.role.role_name)
+        ).length > 0
+          ? this.order.users.filter((f) =>
+              ['Админ', 'Пользователь'].includes(f.role.role_name)
+            )[0].id
+          : '';
+      this.userControl.setValue(owner);
+      this.courierControl.setValue(courier);
+    }
+
     this.orderForm = this.fb.group({
       address: new FormControl(
         { value: this.order?.address, disabled: false },
@@ -91,10 +147,7 @@ export class OrderEditorComponent {
         { value: this.order?.zip, disabled: false },
         Validators.required
       ),
-      desc: new FormControl(
-        { value: this.order?.desc, disabled: false },
-        Validators.required
-      ),
+      desc: new FormControl({ value: this.order?.desc, disabled: false }),
       status_id: new FormControl(
         { value: this.order?.statusid, disabled: false },
         Validators.required
@@ -102,7 +155,24 @@ export class OrderEditorComponent {
     });
   }
 
+  getUserId() {
+    const test = this.order?.users.find((f) =>
+      ['Админ', 'Пользователь'].includes(f.role.role_name)
+    )?.id;
+    return test;
+  }
+
+  public objectComparisonFunction = function (
+    option: any,
+    value: any
+  ): boolean {
+    if (value && option) return option.id === value.id;
+    return false;
+  };
+
   checkValid(control: string) {
+    if (control === 'owner') return this.userControl.valid;
+    if (control === 'courier') return this.courierControl.valid;
     return this.orderForm.controls[control].valid;
   }
 }

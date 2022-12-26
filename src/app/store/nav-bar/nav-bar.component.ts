@@ -78,9 +78,10 @@ export class NavBarComponent implements OnInit {
     this.router.navigateByUrl('/' + str).then();
   }
 
-  isNoAccess() {
+  isNoAccess(account: boolean) {
     const data = window.localStorage.getItem('user');
     if (!data) return true;
+    if (account) return false;
     let localUser: IUser = JSON.parse(data);
     if (localUser) return localUser.role.role_name !== 'Админ';
     return true;
@@ -121,7 +122,6 @@ export class NavBarComponent implements OnInit {
   }
 
   getUserName() {
-    console.log(this.httpAuthService.user?.first_name);
     return this.httpAuthService.user?.first_name;
   }
 }

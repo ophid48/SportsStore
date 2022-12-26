@@ -16,7 +16,7 @@ export class Cart {
     this.recalculate();
   }
 
-  updateQuantity(product: Product, quantity: number) {
+  updateQuantity(product: IProduct, quantity: number) {
     let line = this.lines.find((line) => line.product.id == product.id);
     if (line != undefined) line.quantity = Number(quantity);
     this.recalculate();
@@ -24,7 +24,7 @@ export class Cart {
 
   removeLine(id: number) {
     let index = this.lines.findIndex((line) => line.product.id == id);
-    this.lines.splice(index);
+    this.lines.splice(index, 1);
     this.recalculate();
   }
 
@@ -41,6 +41,8 @@ export class Cart {
       this.itemCount += l.quantity;
       this.cartPrice += l.quantity * l.product.price;
     });
+
+    localStorage.setItem('cart', JSON.stringify(this.lines));
   }
 }
 

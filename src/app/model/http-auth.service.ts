@@ -45,7 +45,7 @@ export class HttpAuthService {
       map((res) => {
         if (res) {
           this.user = res;
-          window.localStorage.setItem('user', res.toString());
+          window.localStorage.setItem('user', JSON.stringify(res));
         }
         return !!res;
       })

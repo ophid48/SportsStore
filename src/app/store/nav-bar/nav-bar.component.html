@@ -22,7 +22,7 @@
         </div>
         <div
           class="button"
-          [hidden]="isNoAccess()"
+          [hidden]="isNoAccess(false)"
           [class.selected]="isSelect('admin')"
           (click)="navClick('admin')"
         >
@@ -30,7 +30,7 @@
         </div>
         <div
           class="button"
-          [hidden]="isNoAccess()"
+          [hidden]="isNoAccess(true)"
           [class.selected]="isSelect('account')"
           (click)="navClick('account')"
         >

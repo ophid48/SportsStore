@@ -22,7 +22,10 @@ export class OrderTableComponent {
     null
   );
   constructor(private orderService: OrderService) {
-    this.orderService.getAll().subscribe((res) => this.orders$.next(res));
+    this.orderService.getAll().subscribe((res) => {
+      console.log(res);
+      this.orders$.next(res);
+    });
   }
 
   deleteProduct(id: number) {
@@ -34,6 +37,7 @@ export class OrderTableComponent {
   }
 
   closeEditor(order: void | IOrder) {
+    console.log(order);
     if (order) {
       const oldData = this.orders$.value ?? [];
       this.orders$.next([...oldData.filter((f) => f.id !== order.id), order]);
@@ -44,8 +48,10 @@ export class OrderTableComponent {
     this.isOpen = false;
   }
 
-  getManager(o: IOrder) {
-    const manager = o.users.filter((f) => f.role.role_name === 'Менеджер');
+  getUser(o: IOrder) {
+    const manager = o.users.filter((f) =>
+      ['Админ', 'Пользователь'].includes(f.role.role_name)
+    );
 
     return manager[0] ? manager[0].first_name + manager[0].last_name : '';
   }
@@ -56,5 +62,13 @@ export class OrderTableComponent {
 
   getPrice(o: IOrder) {
     return o.products.reduce((accum, next) => accum + next.price, 0);
+  }
+
+  getCourier(o: IOrder) {
+    const manager = o.users.filter((f) => f.role.role_name === 'Курьер');
+
+    return manager[0]
+      ? (manager[0].first_name ?? '') + (manager[0].last_name ?? '')
+      : '';
   }
 }

@@ -21,7 +21,8 @@ export interface ICreateOrder {
   country: string;
   zip: string;
   statusid: number;
-  products: number[];
-  users: number[];
+  owner: number;
   desc: string;
+  courier?: number;
+  products?: number[];
 }

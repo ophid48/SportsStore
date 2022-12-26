@@ -83,6 +83,48 @@
       </div>
     </select>
   </div>
+  <div class="form-group">
+    <label>Курьер</label>
+    <select
+      class="form-select"
+      [formControl]="courierControl"
+      [class.is-valid]="checkValid('courier')"
+      [class.is-invalid]="!checkValid('courier')"
+      [compareWith]="objectComparisonFunction"
+    >
+      <option selected disabled value="">Choose...</option>
+      <option *ngFor="let status of couriers$ | async" [value]="status.id">
+        {{ status.first_name + " " + status.last_name }}
+      </option>
+      <div
+        *ngIf="orderForm.controls.status_id.invalid"
+        class="invalid-feedback"
+      >
+        Не правильно
+      </div>
+    </select>
+  </div>
+  <div class="form-group">
+    <label>Заказчик</label>
+    <select
+      class="form-select"
+      [formControl]="userControl"
+      [class.is-valid]="checkValid('owner')"
+      [class.is-invalid]="!checkValid('owner')"
+      [compareWith]="objectComparisonFunction"
+    >
+      <option selected disabled value="">Choose...</option>
+      <option *ngFor="let status of users$ | async" [value]="status.id">
+        {{ status.first_name + " " + status.last_name }}
+      </option>
+      <div
+        *ngIf="orderForm.controls.status_id.invalid"
+        class="invalid-feedback"
+      >
+        Не правильно
+      </div>
+    </select>
+  </div>
   <button
     type="submit"
     (click)="save()"

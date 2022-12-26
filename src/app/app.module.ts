@@ -25,6 +25,8 @@ import { UserEditorComponent } from './store/sport-admin/user/userEditor.compone
 import { UserTableComponent } from './store/sport-admin/user/userTable.component';
 import { ProductService } from './model/product/product.service';
 import { HttpClient } from '@angular/common/http';
+import { CartDetailComponent } from './store/cartDetail.component';
+import { CheckoutComponent } from './store/checkout.component';
 
 registerLocaleData(localeRu);
 
@@ -36,7 +38,8 @@ let routing: Routes = [
     component: SportAdminComponent,
   },
   { path: 'account', component: AccountComponent },
-  { path: 'cart', component: AccountComponent },
+  { path: 'cart', component: CartDetailComponent },
+  { path: 'checkout', component: CheckoutComponent },
   { path: '**', redirectTo: 'catalog' },
 ];
 

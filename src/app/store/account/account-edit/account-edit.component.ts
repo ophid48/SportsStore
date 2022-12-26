@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { IUser } from '../../../model/user/user.interface';
+import { ICreateUser, IUser } from '../../../model/user/user.interface';
 import {
   FormBuilder,
   FormControl,
@@ -9,6 +9,7 @@ import {
 import { BehaviorSubject } from 'rxjs';
 import { IRole } from '../../../model/role/role.interface';
 import { UserService } from '../../../model/user/user.service';
+import { HttpAuthService } from '../../../model/http-auth.service';
 
 @Component({
   selector: 'app-account-edit',
@@ -31,7 +32,11 @@ export class AccountEditComponent implements OnInit {
   private isWallpaperUpload: BehaviorSubject<boolean> =
     new BehaviorSubject<boolean>(false);
 
-  constructor(private fb: FormBuilder, private userService: UserService) {
+  constructor(
+    private fb: FormBuilder,
+    private userService: UserService,
+    private httpAuthService: HttpAuthService
+  ) {
     this.initUser();
   }
 
@@ -85,15 +90,15 @@ export class AccountEditComponent implements OnInit {
       ? this.wallpaper.value
       : this.user.wallpaper;
 
-    const putUser: Omit<IUser, 'id'> = {
+    const putUser: ICreateUser = {
       first_name: data.first_name,
       login: data.login,
-      password: data.password === '' ? this.user.password : data.password,
+      password: data.password,
 
       number: data.number,
       email: data.email,
       address: data.address,
-      role: this.user.role,
+      role_id: this.user.role.id,
       last_name: data.last_name,
       avatar: avatar,
       wallpaper: wallpaper,
@@ -102,6 +107,8 @@ export class AccountEditComponent implements OnInit {
     this.userService.patchById(putUser, this.user.id).subscribe((res) => {
       if (res) {
         window.localStorage.setItem('user', JSON.stringify(res));
+        this.user = res;
+        this.httpAuthService.user = res;
       }
     });
   }

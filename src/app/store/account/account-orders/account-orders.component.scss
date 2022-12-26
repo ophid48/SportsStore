@@ -1,0 +1,122 @@
+.content {
+  height: 1180px;
+  padding-top: 20px;
+  padding-left: 20px;
+
+  .title {
+    font-weight: 400;
+    font-size: 32px;
+    line-height: 39px;
+    margin-bottom: 20px;
+  }
+
+  .orders {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+
+    height: calc(100% - (140px + 73px + 20px));
+    overflow-y: auto;
+
+    .order {
+      border: 1px solid #8D99AE;
+      filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+      border-radius: 20px;
+
+      .order-title {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        padding: 10px;
+        background: #FDC0CE;
+        border-top-left-radius: 20px;
+        border-top-right-radius: 20px;
+
+        .title-price {
+          font-weight: 700;
+          font-size: 20px;
+          line-height: 29px;
+        }
+
+
+        .title-date {
+          display: flex;
+          flex-direction: column;
+
+          .date {
+            font-weight: 400;
+            font-size: 24px;
+            line-height: 29px;
+          }
+
+          .id {
+            font-weight: 400;
+            font-size: 20px;
+            line-height: 24px;
+          }
+        }
+      }
+      .order-body {
+        display: flex;
+        justify-content: space-between;
+        padding: 20px 20px 20px 35px;
+        background-color: white;
+        border-bottom-left-radius: 20px;
+        border-bottom-right-radius: 20px;
+
+        .left {
+          display: flex;
+          flex-direction: column;
+
+          .name {
+            font-weight: 400;
+            font-size: 24px;
+            line-height: 29px;
+            color: #033EB1;
+          }
+
+          .price {
+            font-weight: 700;
+            font-size: 24px;
+            line-height: 29px;
+
+            color: #000000;
+          }
+        }
+        .right {
+          width: 500px;
+
+          .right-title {
+            font-weight: 700;
+            font-size: 24px;
+            line-height: 29px;
+
+            color: #000000;
+          }
+
+          .right-table {
+            table {
+              width: 100%;
+            }
+            .desc {
+              font-weight: 400;
+              font-size: 24px;
+              line-height: 29px;
+
+              color: #898F97;
+              width: 200px;
+            }
+            .value {
+              font-weight: 400;
+              font-size: 24px;
+              line-height: 29px;
+
+
+              color: #000000;
+            }
+          }
+        }
+      }
+    }
+  }
+}

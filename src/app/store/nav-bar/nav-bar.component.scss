@@ -22,7 +22,7 @@
     .logo {
       width: 89px;
       height: 69px;
-      background: #6bc502;
+
     }
 
     .site-name {
@@ -61,6 +61,7 @@
 
       .cart.selected:after {
         border-bottom: solid 3px #ef233c !important;
+        transform: scaleX(1);
       }
 
       .cart:after {

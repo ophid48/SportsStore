@@ -26,6 +26,7 @@
   .right-content {
     display: flex;
     flex-grow: 1;
+    flex-wrap: wrap;
     padding: 10px;
     height: 100%;
     gap: 10px;
